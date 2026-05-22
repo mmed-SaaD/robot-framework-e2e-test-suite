@@ -4,6 +4,7 @@ __pycache__/
 .venv/
 .env
 
+artifacts/
 results/
 output.xml
 log.html

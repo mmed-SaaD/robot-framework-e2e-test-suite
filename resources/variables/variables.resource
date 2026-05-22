@@ -1,5 +1,3 @@
 *** Variables ***
-${BASE_URL}       https://www.saucedemo.com
+${SUT_NAME}       OWASP Juice Shop
 ${BROWSER}        chrome
-${VALID_USER}     standard_user
-${VALID_PASS}     secret_sauce
