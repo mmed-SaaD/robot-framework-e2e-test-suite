@@ -29,6 +29,15 @@ Get Products Details By Index
     
     RETURN    ${name}    ${price}    ${button}
 
+Assert Basket Is Empty
+    ${previous_basket_items_count}=    Get Text    ${basket_items_count}
+    Should Be Equal As Integers    ${previous_basket_items_count}    0
+    Assert Basket Opens
+    ${basket_items}=    Get WebElements    ${basket_row_element}
+    ${basket_items}=    Get Length    ${basket_items}
+    Should Be Equal As Integers    ${basket_items}    0
+    
+
 Assert Item Added To Bakset
     ${previous_basket_items_count}=    Get Text    ${basket_items_count}
     ${product_name}    ${product_price}    ${add_to_basket_button}=    Get Products Details By Index    0
@@ -38,7 +47,9 @@ Assert Item Added To Bakset
     ${snack_bar_message}=    Get Text    ${item_added_message}
     ${out_of_stock_message_status}=    Run Keyword And Return Status    Should Not Be Equal As Strings    
     ...    ${snack_bar_message}    We are out of stock! Sorry for the inconvenience.
-        IF     ${out_of_stock_message_status}
+    ${maximum_ordered_message_status}=    Run Keyword And Return Status    Should Not Be Equal As Strings    
+    ...    ${snack_bar_message}    You can order only up to 5 items of this product.
+        IF     ${out_of_stock_message_status} and ${maximum_ordered_message_status}
             ${current_basket_items_count}=    Get Text    ${basket_items_count}
             ${expected_basket_items_count}=    Evaluate    ${previous_basket_items_count} + 1
             Should Be Equal As Integers    ${expected_basket_items_count}    ${current_basket_items_count}
@@ -49,14 +60,16 @@ Assert Multiple Items Added To Bakset
     ${added_items} =    Set Variable    0
     ${products_added_to_basket}=    Create List
     ${current_basket_items_count}=    Get Text    ${basket_items_count}
-    FOR    ${product}    IN RANGE    0    6
+    FOR    ${product}    IN RANGE    0    2
         ${name}    ${price}    ${button}=    Get Products Details By Index    ${product}
         Click Button    ${button}
         Wait Until Element Is Visible    ${item_added_message}
         ${snack_bar_message}=    Get Text    ${item_added_message}
         ${out_of_stock_message}=    Run Keyword And Return Status    Should Not Be Equal As Strings    
         ...    ${snack_bar_message}    We are out of stock! Sorry for the inconvenience.
-        IF     ${out_of_stock_message}
+        ${maximum_ordered_message_status}=    Run Keyword And Return Status    Should Not Be Equal As Strings    
+    ...    ${snack_bar_message}    You can order only up to 5 items of this product.
+        IF     ${out_of_stock_message} and ${maximum_ordered_message_status}
             ${added_items}=    Evaluate    ${added_items} + 1
         END
         &{product}=    Create Dictionary    
@@ -95,7 +108,7 @@ Assert Product Appears In Basket
 
         ${actual_name}=    Get Text    ${actual_name_element}
         ${actual_price}=    Get Text    ${actual_price_element}
-        Log To Console    Current Iteration is ${index}
+
         Should Be Equal As Strings    ${expected_product}[name]    ${actual_name}
         Should Be Equal As Strings    ${expected_product}[price]    ${actual_price}
     END
@@ -173,8 +186,9 @@ Assert All Products Removed From Basket
     Assert Basket Opens
     ${basket_items}=    Get WebElements    ${basket_row_element}
     ${basket_items_count}=    Get Length    ${basket_items}
-    
-    WHILE    True
+
+    IF    ${basket_items_count} != 0
+         WHILE    True
         ${basket_items}=    Get WebElements    ${basket_row_element}
         ${basket_items_count}=    Get Length    ${basket_items}
 
@@ -184,6 +198,7 @@ Assert All Products Removed From Basket
         
         ${remove_item_button}=    Call Method    ${basket_items}[0]    find_element    xpath    ${basket_remove_product_button}
         Click Button    ${remove_item_button}
+        END
     END
 
 Assert Checkout Total Integrity
@@ -206,6 +221,7 @@ Assert Checkout Total Integrity
     ${checkout_total}=    Get Text    ${checkout_total_price}
     ${checkout_total}=    Get Regexp Matches    ${checkout_total}    \\d+\\.\\d+
     Should Be Equal As Numbers    ${checkout_total}[0]    ${total_price}
+    RETURN    ${total_price}
 
 Assert Checkout Disabled With Empty Bakset
     Assert Basket Opens

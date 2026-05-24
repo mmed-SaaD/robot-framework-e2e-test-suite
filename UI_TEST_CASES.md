@@ -109,17 +109,19 @@ NB : UI-REG-008 is included in all the other test cases !
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| UI-CHECKOUT-001 | Logged-in user can start checkout | High | regression, ui, checkout, critical |
-| UI-CHECKOUT-002 | Address selection page opens | High | regression, ui, checkout, address |
-| UI-CHECKOUT-003 | Add new address during checkout | High | regression, ui, checkout, address |
-| UI-CHECKOUT-004 | Select existing address | High | regression, ui, checkout, address |
-| UI-CHECKOUT-005 | Choose delivery method | High | regression, ui, checkout |
-| UI-CHECKOUT-006 | Choose payment method | High | regression, ui, checkout, payment |
-| UI-CHECKOUT-007 | Review order summary | High | regression, ui, checkout |
-| UI-CHECKOUT-008 | Place order successfully | High | regression, ui, checkout, critical |
-| UI-CHECKOUT-009 | Order confirmation is displayed | High | regression, ui, checkout |
-| UI-CHECKOUT-010 | Basket is cleared after order | High | regression, ui, checkout, basket |
-| UI-CHECKOUT-011 | Order appears in order history | Medium | regression, ui, checkout, account |
+| UI-CHECKOUT-001 | Logged-in user can start checkout | High | regression, ui, checkout, critical | => Checked
+| UI-CHECKOUT-002 | Address selection page opens | High | regression, ui, checkout, address | => Checked
+| UI-CHECKOUT-003 | Add new address during checkout | High | regression, ui, checkout, address | => Checked
+| UI-CHECKOUT-004 | Select existing address | High | regression, ui, checkout, address | => Checked
+| UI-CHECKOUT-005 | Choose delivery method | High | regression, ui, checkout | => Checked
+| UI-CHECKOUT-006 | Choose payment method | High | regression, ui, checkout, payment | => Checked
+| UI-CHECKOUT-007 | Review order summary | High | regression, ui, checkout | => Checked
+| UI-CHECKOUT-008 | Place order successfully | High | regression, ui, checkout, critical | => Checked
+| UI-CHECKOUT-009 | Order confirmation is displayed | High | regression, ui, checkout | => Checked
+| UI-CHECKOUT-010 | Basket is cleared after order | High | regression, ui, checkout, basket | => Checked
+| UI-CHECKOUT-011 | Order appears in order history | Medium | regression, ui, checkout, account | => Checked
+
+NB: UI-CHECKOUT-001 and UI-CHECKOUT-002 are included in the same test case
 
 ---
 
@@ -127,12 +129,12 @@ NB : UI-REG-008 is included in all the other test cases !
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| UI-ADDR-001 | Open saved addresses page | Medium | regression, ui, address |
-| UI-ADDR-002 | Add valid address | High | regression, ui, address |
-| UI-ADDR-003 | Add address with missing required fields | High | regression, ui, address, negative |
-| UI-ADDR-004 | Edit address | Medium | regression, ui, address |
-| UI-ADDR-005 | Delete address | Medium | regression, ui, address |
-| UI-ADDR-006 | Address appears during checkout | High | regression, ui, address, checkout |
+| UI-ADDR-001 | Open saved addresses page | Medium | regression, ui, address | => Checked
+| UI-ADDR-002 | Add valid address | High | regression, ui, address | => Checked
+| UI-ADDR-003 | Add address with missing required fields | High | regression, ui, address, negative | => Checked
+| UI-ADDR-004 | Edit address | Medium | regression, ui, address | => Checked
+| UI-ADDR-005 | Delete address | Medium | regression, ui, address | => Checked
+| UI-ADDR-006 | Address appears during checkout | High | regression, ui, address, checkout | => Checked
 
 ---
 
@@ -140,13 +142,12 @@ NB : UI-REG-008 is included in all the other test cases !
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| UI-PAY-001 | Open saved payment options | Medium | regression, ui, payment |
-| UI-PAY-002 | Add new payment method | High | regression, ui, payment |
-| UI-PAY-003 | Validate missing card fields | High | regression, ui, payment, negative |
-| UI-PAY-004 | Validate invalid card number | High | regression, ui, payment, negative |
-| UI-PAY-005 | Validate expired card date | Medium | regression, ui, payment, negative |
-| UI-PAY-006 | Select payment during checkout | High | regression, ui, payment, checkout |
-| UI-PAY-007 | Delete saved payment method | Medium | regression, ui, payment |
+| UI-PAY-001 | Open saved payment options | Medium | regression, ui, payment | => Checked
+| UI-PAY-002 | Add new payment method | High | regression, ui, payment | => Checked
+| UI-PAY-003 | Validate missing card fields | High | regression, ui, payment, negative | => Checked
+| UI-PAY-004 | Validate invalid card number | High | regression, ui, payment, negative | => Checked
+| UI-PAY-005 | Select payment during checkout | High | regression, ui, payment, checkout | => Checked
+| UI-PAY-006 | Delete saved payment method | Medium | regression, ui, payment | => Checked
 
 ---
 
