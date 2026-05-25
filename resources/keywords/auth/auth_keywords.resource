@@ -7,14 +7,16 @@ Resource    ../../keywords/smoke/smoke_keywords.resource
 
 *** Keywords ***
 Valid Log In
+    [Arguments]    ${email}=${VALID_EMAIL}    ${password}=${VALID_PASSWORD}
     Login Page Opens
-    Input Text    ${email_input}    text=${VALID_EMAIL}
-    Input Password    ${password_input}    password=${VALID_PASSWORD}
+    Input Text    ${email_input}    text=${email}
+    Input Password    ${password_input}    password=${password}
     Click Button    ${login_button}
     ${Login_failed}=    Run Keyword And Return Status    Element Should Be Visible    ${login_err}
     IF    ${Login_failed}
         Fail    ${login_err_message}
     END
+    Wait Until Element Is Visible    ${navbar_account}
 
 Invalid Email Log In Case
     Login Page Opens

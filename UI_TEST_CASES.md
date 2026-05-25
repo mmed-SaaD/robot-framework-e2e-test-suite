@@ -18,7 +18,6 @@ The goal is to cover:
 - Feedback/contact
 - Navigation
 - Negative UI scenarios
-- Security-aware UI checks
 - End-to-end business workflows
 
 ---
@@ -155,26 +154,25 @@ NB: UI-CHECKOUT-001 and UI-CHECKOUT-002 are included in the same test case
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| UI-ACC-001 | Open account page | Medium | regression, ui, account |
-| UI-ACC-002 | View user profile | Medium | regression, ui, account |
-| UI-ACC-003 | Change password | High | regression, ui, account, auth |
-| UI-ACC-004 | Try changing password with wrong current password | High | regression, ui, account, negative |
-| UI-ACC-005 | Update security question if available | Medium | regression, ui, account |
-| UI-ACC-006 | View order history | Medium | regression, ui, account, checkout |
-| UI-ACC-007 | View previous order details | Medium | regression, ui, account, checkout |
+| UI-ACC-001 | Open account page | Medium | regression, ui, account | => Checked
+| UI-ACC-002 | View user profile | Medium | regression, ui, account | => Checked
+| UI-ACC-003 | Change password | High | regression, ui, account, auth | => Checked
+| UI-ACC-004 | Try changing password with wrong current password | High | regression, ui, account, negative | => Checked
 
+NB :  UI-ACC-001 and  UI-ACC-002 are included in the same test case
 ---
 
 ## 10. Contact / Feedback Tests
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| UI-FEED-001 | Open contact or feedback page | Medium | regression, ui, feedback |
-| UI-FEED-002 | Submit valid feedback | High | regression, ui, feedback |
-| UI-FEED-003 | Submit empty feedback | Medium | regression, ui, feedback, negative |
-| UI-FEED-004 | Submit feedback with invalid email | Medium | regression, ui, feedback, negative |
-| UI-FEED-005 | Rating component works | Low | regression, ui, feedback |
-| UI-FEED-006 | Success message appears after valid feedback | High | regression, ui, feedback |
+| UI-FEED-001 | Open feedback page | Medium | regression, ui, feedback | => Checked
+| UI-FEED-002 | Submit valid feedback | High | regression, ui, feedback | => Checked
+| UI-FEED-003 | Submit empty feedback | Medium | regression, ui, feedback, negative | => Checked
+| UI-FEED-004 | Rating component works | Low | regression, ui, feedback | => Checked
+| UI-FEED-005 | Success message appears after valid feedback | High | regression, ui, feedback | => Checked
+
+NB : UI-FEED-005 and UI-FEED-004 are included in UI-FEED-002 test case
 
 ---
 
@@ -182,13 +180,15 @@ NB: UI-CHECKOUT-001 and UI-CHECKOUT-002 are included in the same test case
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| UI-NAV-001 | Menu opens and closes | Medium | regression, ui, navigation |
-| UI-NAV-002 | All main menu links work | High | regression, ui, navigation |
-| UI-NAV-003 | Logo redirects to home | Medium | regression, ui, navigation |
-| UI-NAV-004 | Basket link redirects to basket | High | regression, ui, navigation, basket |
-| UI-NAV-005 | Account link redirects to profile or login | High | regression, ui, navigation, account |
-| UI-NAV-006 | Browser back button works correctly | Medium | regression, ui, navigation |
-| UI-NAV-007 | Page refresh does not break current state | Medium | regression, ui, navigation, session |
+| UI-NAV-001 | Menu opens and closes | Medium | regression, ui, navigation | => Checked
+| UI-NAV-002 | All main menu links work | High | regression, ui, navigation | => Checked
+| UI-NAV-003 | Logo redirects to home | Medium | regression, ui, navigation | => Checked
+| UI-NAV-004 | Basket link redirects to basket | High | regression, ui, navigation, basket | => Checked
+| UI-NAV-005 | Account link redirects to profile or login | High | regression, ui, navigation, account | => Checked
+| UI-NAV-006 | Browser back button works correctly | Medium | regression, ui, navigation | => Checked
+| UI-NAV-007 | Page refresh does not break current state | Medium | regression, ui, navigation, session | => Checked
+
+NB : UI-NAV-002, UI-NAV-003, UI-NAV-004 and UI-NAV-005 are implicitly included in various test cases !  => coverage through functional flows.
 
 ---
 
@@ -196,27 +196,9 @@ NB: UI-CHECKOUT-001 and UI-CHECKOUT-002 are included in the same test case
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| UI-NEG-001 | Invalid route shows error page | Medium | regression, ui, negative |
-| UI-NEG-002 | Direct access to basket while logged out | High | regression, ui, negative, auth |
-| UI-NEG-003 | Direct access to checkout while logged out | High | regression, ui, negative, auth, checkout |
-| UI-NEG-004 | Submit forms with empty required fields | High | regression, ui, negative |
-| UI-NEG-005 | Use very long text in input fields | Medium | regression, ui, negative |
-| UI-NEG-006 | Use special characters in input fields | Medium | regression, ui, negative |
-| UI-NEG-007 | Use spaces only in input fields | Medium | regression, ui, negative |
+| UI-NEG-001 | Invalid route redirects safely | Medium | regression, ui, negative, routing | => Checked
+| UI-NEG-002 | Direct access to basket while logged out | High | regression, ui, negative, auth | => Checked
+| UI-NEG-003 | Direct access to checkout while logged out | High | regression, ui, negative, auth, checkout | => Checked
+| UI-NEG-004 | Submit forms with empty required fields | High | regression, ui, negative | => Checked
 
----
-
-## 13. End-to-End Business Workflows
-
-| ID | Test Case | Priority | Suggested Tags |
-|---|---|---:|---|
-| UI-E2E-001 | Guest user browses products then is asked to login before checkout | High | e2e, ui, auth, checkout |
-| UI-E2E-002 | Registered user logs in, adds product, checks basket, and completes order | Critical | e2e, ui, critical, checkout |
-| UI-E2E-003 | User registers, logs in, adds address, adds payment method, and completes first order | Critical | e2e, ui, critical, registration, checkout |
-| UI-E2E-004 | User adds product to basket, logs out, logs back in, and verifies basket state | High | e2e, ui, basket, session |
-| UI-E2E-005 | User searches product, opens details, adds it to basket, and completes checkout | High | e2e, ui, products, search, checkout |
-| UI-E2E-006 | User adds multiple products, removes one, verifies total, and completes order | High | e2e, ui, basket, checkout |
-| UI-E2E-007 | User submits feedback after completing an order | Medium | e2e, ui, feedback, checkout |
-
----
-
+NB : UI-NEG-004 is included in various test cases !

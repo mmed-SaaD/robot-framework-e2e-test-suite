@@ -30,6 +30,7 @@ Assert Juice List IS Visible
 Assert Menu Opens
     Assert Page Loaded
     Click Element    ${menu_button}
+    Wait Until Element Is Visible    ${side_navbar}
 
 Assert Basket Icon Is Visible
     Assert Page Loaded
