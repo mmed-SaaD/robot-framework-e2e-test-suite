@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../../resources/keywords/global_keywords.resource
-Resource    ../../resources/keywords/smoke/smoke_keywords.resource
+Resource    ../../resources/keywords/ui/smoke/smoke_keywords.resource
 Test Setup  Open Browser To Main Page
 Test Teardown  Close Browser Session
 

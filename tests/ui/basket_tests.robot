@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../../resources/keywords/global_keywords.resource
-Resource    ../../resources/keywords/basket/basket_keywords.resource
+Resource    ../../resources/keywords/ui/basket/basket_keywords.resource
 Test Setup  Pretest Build    
 Test Teardown  Close Browser Session
 

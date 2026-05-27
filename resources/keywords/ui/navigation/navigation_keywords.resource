@@ -1,12 +1,12 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource    ../../locators/navigation/navigation.resource
-Resource    ../../locators/smoke/home_page.resource
-Resource    ../../keywords/user_account/user_account_keywords.resource
-Resource    ../../keywords/basket/basket_keywords.resource
-Resource    ../../keywords/smoke/smoke_keywords.resource
-Resource    ../../keywords/global_keywords.resource
-Resource    ../../keywords/auth/auth_keywords.resource
+Resource    ../../../locators/navigation/navigation.resource
+Resource    ../../../locators/smoke/home_page.resource
+Resource    ../user_account/user_account_keywords.resource
+Resource    ../basket/basket_keywords.resource
+Resource    ../smoke/smoke_keywords.resource
+Resource    ../../global_keywords.resource
+Resource    ../auth/auth_keywords.resource
 
 *** Keywords ***
 Pretest Build

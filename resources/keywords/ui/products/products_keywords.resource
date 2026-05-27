@@ -3,9 +3,9 @@ Library    SeleniumLibrary
 Library    String
 Library    Collections
 Resource    ../auth/auth_keywords.resource
-Resource    ../../locators/products/products.resource
-Resource    ../../variables/products/products_variables.resource
-Resource    ../../keywords/global_keywords.resource
+Resource    ../../../locators/products/products.resource
+Resource    ../../../variables/products/products_variables.resource
+Resource    ../../global_keywords.resource
 
 *** Keywords ***
 Pretest Build

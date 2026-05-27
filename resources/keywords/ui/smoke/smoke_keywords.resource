@@ -1,10 +1,10 @@
 *** Settings ***
 Library    SeleniumLibrary
-Variables    ../../../core/utils/env_loader.py
-Resource   ../../variables/variables.resource
-Resource   ../../variables/auth/auth_variables.resource
-Resource   ../../locators/smoke/home_page.resource
-Resource    ../../keywords/auth/auth_keywords.resource
+Variables    ../../../../core/utils/env_loader.py
+Resource   ../../../variables/variables.resource
+Resource   ../../../variables/auth/auth_variables.resource
+Resource   ../../../locators/smoke/home_page.resource
+Resource    ../auth/auth_keywords.resource
 
 *** Keywords ***
 Handle Banner If Exists

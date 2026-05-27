@@ -1,12 +1,12 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    String
-Variables    ../../core/utils/env_loader.py
-Resource    ../../locators/basket/basket.resource
-Resource    ../../locators/checkout/checkout.resource
-Resource    ../../keywords/basket/basket_keywords.resource
-Resource    ../../keywords/global_keywords.resource
-Resource    ../../locators/auth/auth.resource
+Variables    ../../../../core/utils/env_loader.py
+Resource    ../../../locators/basket/basket.resource
+Resource    ../../../locators/checkout/checkout.resource
+Resource    ../basket/basket_keywords.resource
+Resource    ../../global_keywords.resource
+Resource    ../../../locators/auth/auth.resource
 Resource    ../auth/auth_keywords.resource
 
 

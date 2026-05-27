@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../../resources/keywords/registration/registration_keywords.resource
+Resource    ../../resources/keywords/ui/registration/registration_keywords.resource
 Resource    ../../resources/keywords/global_keywords.resource
 Test Setup  Open Browser To Main Page
 Test Teardown  Close Browser Session

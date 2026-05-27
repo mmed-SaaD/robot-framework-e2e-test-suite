@@ -1,12 +1,12 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    String
-Resource    ../../locators/auth/auth.resource
-Resource    ../../locators/payment/payment.resource
-Resource    ../../locators/checkout/checkout.resource
-Resource    ../global_keywords.resource
-Resource    ../../keywords/auth/auth_keywords.resource
-Resource    ../../keywords/checkout/checkout_keywords.resource
+Resource    ../../../locators/auth/auth.resource
+Resource    ../../../locators/payment/payment.resource
+Resource    ../../../locators/checkout/checkout.resource
+Resource    ../../global_keywords.resource
+Resource    ../auth/auth_keywords.resource
+Resource    ../checkout/checkout_keywords.resource
 
 *** Keywords ***
 Pretest Build

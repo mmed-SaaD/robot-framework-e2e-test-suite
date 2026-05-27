@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../../resources/keywords/negative/negative_keywords.resource
+Resource    ../../resources/keywords/ui/negative/negative_keywords.resource
 Resource    ../../resources/keywords/global_keywords.resource
 Test Setup    Pretest Build
 Test Teardown    Close All Browsers

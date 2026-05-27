@@ -2,12 +2,11 @@
 Library    SeleniumLibrary
 Library    Collections
 Library    String
-Variables    ../../../core/utils/env_loader.py
+Variables    ../../../../core/utils/env_loader.py
 Resource    ../auth/auth_keywords.resource
-Resource    ../../keywords/basket/basket_keywords.resource
-Resource    ../../locators/basket/basket.resource
-Resource    ../../locators/products/products.resource
-Resource    ../../keywords/global_keywords.resource
+Resource    ../../../locators/basket/basket.resource
+Resource    ../../../locators/products/products.resource
+Resource    ../../global_keywords.resource
 
 *** Keywords ***
 Pretest Build

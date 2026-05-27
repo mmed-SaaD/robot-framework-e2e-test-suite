@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../../resources/keywords/global_keywords.resource
-Resource    ../../resources/keywords/products/products_keywords.resource
+Resource    ../../resources/keywords/ui/products/products_keywords.resource
 Test Setup  Pretest Build    
 Test Teardown  Close Browser Session
 
