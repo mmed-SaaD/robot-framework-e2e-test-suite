@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../../resources/keywords/user_account/user_account_keywords.resource
+Resource    ../../resources/keywords/ui/user_account/user_account_keywords.resource
 Resource    ../../resources/keywords/global_keywords.resource
 Test Setup    user_account_keywords.Pretest Build
 Test Teardown    Close All Browsers

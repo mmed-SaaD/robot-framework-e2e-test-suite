@@ -1,11 +1,11 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    String
-Resource    ../../locators/smoke/home_page.resource
-Resource    ../../locators/feedback/feedback.resource
-Resource    ../../keywords/global_keywords.resource
-Resource    ../../keywords/auth/auth_keywords.resource
-Resource    ../../variables/feedback/feedback_variables.resource
+Resource    ../../../locators/smoke/home_page.resource
+Resource    ../../../locators/feedback/feedback.resource
+Resource    ../../global_keywords.resource
+Resource    ../auth/auth_keywords.resource
+Resource    ../../../variables/feedback/feedback_variables.resource
 
 *** Keywords ***
 Pretest Build

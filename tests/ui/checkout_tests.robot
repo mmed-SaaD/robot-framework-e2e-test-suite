@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    ../../resources/keywords/global_keywords.resource
-Resource    ../../resources/keywords/checkout/checkout_keywords.resource
-Resource    ../../resources/keywords/basket/basket_keywords.resource
+Resource    ../../resources/keywords/ui/checkout/checkout_keywords.resource
+Resource    ../../resources/keywords/ui/basket/basket_keywords.resource
 Test Setup  Checkout_keywords.Pretest Build
 Test Teardown  Close Browser Session
 

@@ -1,8 +1,8 @@
 *** Settings ***
 Library     SeleniumLibrary
-Variables    ../../../core/utils/env_loader.py
-Resource    ../../locators/registration/registration.resource
-Resource    ../../variables/registration/registration_variables.resource
+Variables    ../../../../core/utils/env_loader.py
+Resource    ../../../locators/registration/registration.resource
+Resource    ../../../variables/registration/registration_variables.resource
 
 *** Keywords ***
 Assert Registration Page Opens

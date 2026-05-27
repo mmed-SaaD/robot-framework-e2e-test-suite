@@ -1,9 +1,9 @@
 *** Settings ***
 Library    SeleniumLibrary
-Variables    ../../../core/utils/env_loader.py
-Resource    ../../variables/variables.resource
-Resource    ../../variables/auth/auth_variables.resource
-Resource    ../../keywords/smoke/smoke_keywords.resource
+Variables    ../../../../core/utils/env_loader.py
+Resource    ../../../variables/variables.resource
+Resource    ../../../variables/auth/auth_variables.resource
+Resource    ../smoke/smoke_keywords.resource
 
 *** Keywords ***
 Valid Log In

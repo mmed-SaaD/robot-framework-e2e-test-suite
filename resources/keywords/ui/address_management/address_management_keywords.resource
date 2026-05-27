@@ -1,9 +1,9 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource    ../../locators/address_management/address_management.resource
-Resource    ../../locators/auth/auth.resource
-Resource    ../../locators/checkout/checkout.resource
-Resource    ../global_keywords.resource
+Resource    ../../../locators/address_management/address_management.resource
+Resource    ../../../locators/auth/auth.resource
+Resource    ../../../locators/checkout/checkout.resource
+Resource    ../../global_keywords.resource
 Resource    ../auth/auth_keywords.resource
 Resource    ../checkout/checkout_keywords.resource
 

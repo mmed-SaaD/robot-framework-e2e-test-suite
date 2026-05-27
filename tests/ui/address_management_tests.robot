@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../../resources/keywords/address_management/address_management_keywords.resource
+Resource    ../../resources/keywords/ui/address_management/address_management_keywords.resource
 Test Setup    address_management_keywords.Pretest Build
 Test Teardown    Close Browser Session
 

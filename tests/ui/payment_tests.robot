@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../../resources/keywords/global_keywords.resource
-Resource    ../../resources/keywords/payment/payment_keywords.resource
+Resource    ../../resources/keywords/ui/payment/payment_keywords.resource
 Test Setup    payment_keywords.Pretest Build
 Test Teardown    Close All Browsers
 

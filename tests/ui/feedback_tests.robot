@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../../resources/keywords/feedback/feedback_keywords.resource
+Resource    ../../resources/keywords/ui/feedback/feedback_keywords.resource
 Test Setup    feedback_keywords.Pretest Build
 Test Teardown    Close All Browsers
 

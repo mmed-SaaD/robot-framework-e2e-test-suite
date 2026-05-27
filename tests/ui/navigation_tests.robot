@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../../resources/keywords/navigation/navigation_keywords.resource
+Resource    ../../resources/keywords/ui/navigation/navigation_keywords.resource
 Resource    ../../resources/keywords/global_keywords.resource
 Test Setup    navigation_keywords.Pretest Build
 Test Teardown    Close All Browsers

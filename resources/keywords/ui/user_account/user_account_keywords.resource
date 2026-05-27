@@ -1,10 +1,10 @@
 *** Settings ***
 Library    SeleniumLibrary
-Variables    ../../../core/utils/env_loader.py
-Resource    ../../locators/user_account/user_account.resource
-Resource    ../../locators/auth/auth.resource
-Resource    ../global_keywords.resource
-Resource    ../../keywords/auth/auth_keywords.resource
+Variables    ../../../../core/utils/env_loader.py
+Resource    ../../../locators/user_account/user_account.resource
+Resource    ../../../locators/auth/auth.resource
+Resource    ../../global_keywords.resource
+Resource    ../auth/auth_keywords.resource
 
 *** Keywords ***
 Pretest Build

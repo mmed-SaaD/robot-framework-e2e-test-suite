@@ -1,10 +1,10 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource    ../../keywords/global_keywords.resource
-Resource    ../../keywords/auth/auth_keywords.resource
-Resource    ../../keywords/smoke/smoke_keywords.resource
-Resource    ../../variables/negative/negative_variables.resource
-Resource    ../../locators/smoke/home_page.resource
+Resource    ../global_keywords.resource
+Resource    ../auth/auth_keywords.resource
+Resource    ../smoke/smoke_keywords.resource
+Resource    ../../../variables/negative/negative_variables.resource
+Resource    ../../../locators/smoke/home_page.resource
 
 
 *** Keywords ***
