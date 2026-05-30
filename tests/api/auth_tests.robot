@@ -5,7 +5,7 @@ Resource    ../../resources/keywords/api/auth/auth_keywords.resource
 #API-AUTH-001
 Login With Valid Credentials Returns Authentication Token 
     [Tags]    regression    api    auth    critical
-    Assert Valid Login Returns Authentication Token
+    Assert Valid Login Returns Authentication Token    
 
 #API-AUTH-002
 Login With Invalid Email Is Rejected

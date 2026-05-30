@@ -21,6 +21,8 @@ Assert Valid Login Returns Authentication Token
     Dictionary Should Contain Key    ${response.json()}    authentication
     Should Not Be Empty    ${response.json()}[authentication][token]
 
+    RETURN    ${response.json()}[authentication][token]    ${response.json()}[authentication][bid]  
+
 Assert Login With Invalid Email Is Rejected
     ${response}=    Login Process    ${INVALID_EMAIL}    ${VALID_PASSWORD}
 

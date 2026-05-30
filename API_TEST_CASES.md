@@ -88,14 +88,14 @@ NB: API-SMOKE-001 and API-SMOKE-002  are covered by the same smoke test because 
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-REG-001 | Register user with valid data | High | regression, api, registration, critical |
-| API-REG-002 | Register user with existing email is rejected | High | regression, api, registration, negative |
-| API-REG-003 | Register user with invalid email format is rejected | Medium | regression, api, registration, negative |
-| API-REG-004 | Register user with missing password is rejected | High | regression, api, registration, negative |
-| API-REG-005 | Register user with weak password is rejected if backend enforces policy | Medium | regression, api, registration, validation |
-| API-REG-006 | Register user with missing security question is rejected | Medium | regression, api, registration, negative |
-| API-REG-007 | Register user with missing security answer is rejected | Medium | regression, api, registration, negative |
-| API-REG-008 | Registration response does not expose sensitive data | High | regression, api, registration, security |
+| API-REG-001 | Register user with valid data | High | regression, api, registration, critical | => Checked
+| API-REG-002 | Register user with existing email is rejected | High | regression, api, registration, negative | => Checked
+| API-REG-003 | Register user with invalid email format is rejected | Medium | regression, api, registration, negative | => Checked
+| API-REG-004 | Register user with missing password is rejected | High | regression, api, registration, negative | => Checked
+| API-REG-005 | Register user with weak password is rejected if backend enforces policy | Medium | regression, api, registration, validation | => Checked
+| API-REG-006 | Register user with missing security question is rejected | Medium | regression, api, registration, negative | => Checked
+| API-REG-007 | Register user with missing security answer is rejected | Medium | regression, api, registration, negative | => Checked
+| API-REG-008 | Registration response does not expose sensitive data | High | regression, api, registration, security | => Checked
 
 NB: Keep only one strong happy-path registration test. Most value comes from validation and security checks.
 
@@ -105,18 +105,18 @@ NB: Keep only one strong happy-path registration test. Most value comes from val
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-PROD-001 | Get all products returns product list | High | regression, api, products |
-| API-PROD-002 | Product response contains required fields | High | regression, api, products, contract |
-| API-PROD-003 | Get product by valid ID returns correct product | High | regression, api, products |
-| API-PROD-004 | Get product by invalid ID returns controlled error | Medium | regression, api, products, negative |
-| API-PROD-005 | Search product by valid keyword returns matching results | High | regression, api, products, search |
-| API-PROD-006 | Search product with unknown keyword returns empty or controlled response | Medium | regression, api, products, search, negative |
-| API-PROD-007 | Product prices are numeric and greater than zero | High | regression, api, products, contract |
-| API-PROD-008 | Product image field is present in product response | Medium | regression, api, products, contract |
-| API-PROD-009 | Product endpoint handles special characters in search safely | High | regression, api, products, security |
-| API-PROD-010 | Product endpoint does not expose internal server errors | High | regression, api, products, security |
+| API-PROD-001 | Get all products returns product list | High | regression, api, products | => Checked
+| API-PROD-002 | Product response contains required fields | High | regression, api, products, contract | => Checked
+| API-PROD-003 | Get product by valid ID returns correct product | High | regression, api, products | => Checked
+| API-PROD-004 | Get product by invalid ID returns controlled error | Medium | regression, api, products, negative | => Checked
+| API-PROD-005 | Search product by valid keyword returns matching results | High | regression, api, products, search | => Checked
+| API-PROD-006 | Search product with unknown keyword returns empty or controlled response | Medium | regression, api, products, search, negative | => Checked
+| API-PROD-007 | Product prices are numeric and greater than zero | High | regression, api, products, contract | => Checked
+| API-PROD-008 | Product image field is present in product response | Medium | regression, api, products, contract | => Checked
+| API-PROD-009 | Product endpoint handles special characters in search safely | High | regression, api, products, security | => Checked
+| API-PROD-010 | Product endpoint does not expose internal server errors | High | regression, api, products, security | => Checked
 
-NB: UI already checks product visibility. API checks should focus on data quality, contract, search behavior, and backend resilience.
+NB: API-PROD-008 is Checked in Test Case API-PROD-002
 
 ---
 
@@ -124,20 +124,20 @@ NB: UI already checks product visibility. API checks should focus on data qualit
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-BASKET-001 | Create or access basket for authenticated user | High | regression, api, basket, critical |
-| API-BASKET-002 | Add valid product to basket | High | regression, api, basket, critical |
-| API-BASKET-003 | Basket response contains added product | High | regression, api, basket |
-| API-BASKET-004 | Add same product twice updates quantity or creates expected basket item behavior | High | regression, api, basket |
-| API-BASKET-005 | Increase basket item quantity | Medium | regression, api, basket |
-| API-BASKET-006 | Decrease basket item quantity | Medium | regression, api, basket |
-| API-BASKET-007 | Remove basket item | High | regression, api, basket |
-| API-BASKET-008 | Basket total is calculated correctly | High | regression, api, basket, critical |
-| API-BASKET-009 | Add invalid product ID to basket is rejected | High | regression, api, basket, negative |
-| API-BASKET-010 | Add product with invalid quantity is rejected | High | regression, api, basket, negative |
-| API-BASKET-011 | Basket cannot be modified without authentication | High | regression, api, basket, security |
-| API-BASKET-012 | User cannot access another user basket by changing basket ID | High | regression, api, basket, broken-access-control |
+| API-BASKET-001 | Access basket for authenticated user | High | regression, api, basket, critical | => Checked
+| API-BASKET-002 | Add valid product to basket | High | regression, api, basket, critical | => Checked
+| API-BASKET-003 | Basket response contains added product | High | regression, api, basket | => Checked
+| API-BASKET-004 | Add same product twice updates quantity or creates expected basket item behavior | High | regression, api, basket | => Checked
+| API-BASKET-005 | Increase basket item quantity | Medium | regression, api, basket | => Checked
+| API-BASKET-006 | Decrease basket item quantity | Medium | regression, api, basket | => Checked
+| API-BASKET-007 | Remove basket item | High | regression, api, basket | => Checked
+| API-BASKET-008 | Basket total is calculated correctly | High | regression, api, basket, critical | => Checked
+| API-BASKET-009 | Add invalid product ID to basket is rejected | High | regression, api, basket, negative | => Checked
+| API-BASKET-010 | Add product with invalid quantity is rejected | High | regression, api, basket, negative | => Checked
+| API-BASKET-011 | Basket cannot be modified without authentication | High | regression, api, basket, security | => Checked
+| API-BASKET-012 | User cannot access another user basket by changing basket ID | High | regression, api, basket, broken-access-control | => Checked
 
-NB: API-BASKET-012 is very important for portfolio value because it demonstrates access-control testing, not just happy-path automation.
+NB:API-BASKET-003, API-BASKET-004 and API-BASKET-009 are all included in the same test case API-BASKET-002
 
 ---
 
