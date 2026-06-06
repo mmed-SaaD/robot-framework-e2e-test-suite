@@ -103,6 +103,6 @@ Assert User Registration With Missing Security Answer Is Rejected
     END
 
 Assert Registration Response Does Not Expose Sensitive Data
-    ${response}=    Assert User Registration With Valid Data    ${VALID_EMAIL6}
+    ${response}=    Assert User Registration With Valid Data    ${VALID_EMAIL10}
     Dictionary Should Contain Key    ${response}    data    
     Dictionary Should Not Contain Key    ${response}    password    securityQuestion    securityAnswer

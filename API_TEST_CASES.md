@@ -96,9 +96,6 @@ NB: API-SMOKE-001 and API-SMOKE-002  are covered by the same smoke test because 
 | API-REG-006 | Register user with missing security question is rejected | Medium | regression, api, registration, negative | => Checked
 | API-REG-007 | Register user with missing security answer is rejected | Medium | regression, api, registration, negative | => Checked
 | API-REG-008 | Registration response does not expose sensitive data | High | regression, api, registration, security | => Checked
-
-NB: Keep only one strong happy-path registration test. Most value comes from validation and security checks.
-
 ---
 
 ## 4. Product Catalogue API Tests
@@ -145,53 +142,51 @@ NB:API-BASKET-003, API-BASKET-004 and API-BASKET-009 are all included in the sam
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-CHECKOUT-001 | Authenticated user can place order with valid basket, address, delivery, and payment data | High | regression, api, checkout, critical |
-| API-CHECKOUT-002 | Checkout fails with empty basket | High | regression, api, checkout, negative |
-| API-CHECKOUT-003 | Checkout fails without valid address | High | regression, api, checkout, negative |
-| API-CHECKOUT-004 | Checkout fails without valid delivery method | High | regression, api, checkout, negative |
-| API-CHECKOUT-005 | Checkout fails without valid payment method | High | regression, api, checkout, negative |
-| API-CHECKOUT-006 | Order summary values match basket values | High | regression, api, checkout, contract |
-| API-CHECKOUT-007 | Order confirmation response contains order ID or confirmation data | High | regression, api, checkout, contract |
-| API-CHECKOUT-008 | Basket is cleared or updated correctly after successful order | High | regression, api, checkout, basket |
-| API-CHECKOUT-009 | User cannot place order for another user basket | High | regression, api, checkout, broken-access-control |
-| API-CHECKOUT-010 | Checkout endpoint rejects tampered price or quantity data | High | regression, api, checkout, security |
+| API-CHECKOUT-001 | Authenticated user can place order with valid basket, address, delivery, and payment data | High | regression, api, checkout, critical | => Checked
+| API-CHECKOUT-002 | Checkout fails with empty basket | High | regression, api, checkout, negative | => Checked
+| API-CHECKOUT-003 | Checkout fails without valid address | High | regression, api, checkout, negative | => Checked
+| API-CHECKOUT-004 | Checkout fails without valid delivery method | High | regression, api, checkout, negative | => Checked
+| API-CHECKOUT-005 | Checkout fails without valid payment method | High | regression, api, checkout, negative | => Checked
+| API-CHECKOUT-006 | Order summary values match basket values | High | regression, api, checkout, contract | ?
+| API-CHECKOUT-007 | Order confirmation response contains order ID or confirmation data | High | regression, api, checkout, contract | => checked
+| API-CHECKOUT-008 | Basket is cleared or updated correctly after successful order | High | regression, api, checkout, basket | => Checked
+| API-CHECKOUT-009 | User cannot place order for another user basket | High | regression, api, checkout, broken-access-control | => Checked
+| API-CHECKOUT-010 | Basket item endpoint ignores tampered price field | High | regression, api, checkout, security | => Checked
 
-NB: Do not automate every checkout UI step again. One API happy path plus strong negative and tampering checks is enough.
-
+NB : API-CHECKOUT-001 and API-CHECKOUT-007 are included in the same test case
 ---
 
 ## 7. Address API Tests
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-ADDR-001 | Create address with valid data | High | regression, api, address |
-| API-ADDR-002 | Get saved addresses for authenticated user | High | regression, api, address |
-| API-ADDR-003 | Address response contains required fields | Medium | regression, api, address, contract |
-| API-ADDR-004 | Create address with missing required fields is rejected | High | regression, api, address, negative |
-| API-ADDR-005 | Create address with invalid phone number is rejected if backend validates it | Medium | regression, api, address, validation |
-| API-ADDR-006 | Delete saved address | Medium | regression, api, address |
-| API-ADDR-007 | Deleted address no longer appears in address list | Medium | regression, api, address |
-| API-ADDR-008 | User cannot access another user address | High | regression, api, address, broken-access-control |
-| API-ADDR-009 | User cannot delete another user address | High | regression, api, address, broken-access-control |
+| API-ADDR-001 | Create address with valid data | High | regression, api, address | => Checked
+| API-ADDR-002 | Get saved addresses for authenticated user | High | regression, api, address | => Checked
+| API-ADDR-003 | Address response contains required fields | Medium | regression, api, address, contract | => Checked
+| API-ADDR-004 | Create address with missing required fields is rejected | High | regression, api, address, negative | => Checked
+| API-ADDR-005 | Create address with invalid phone number is rejected if backend validates it | Medium | regression, api, address, validation | => Checked
+| API-ADDR-006 | Delete saved address | Medium | regression, api, address | => Checked
+| API-ADDR-007 | Deleted address no longer appears in address list | Medium | regression, api, address | => Checked
 
+NB: API-ADDR-001, API-ADDR-002 and API-ADDR-003 are included in the same test case API-ADDR-001
+NB: API-ADDR-006 and API-ADDR-007 are both included in the same test case API-ADDR-006
 ---
 
 ## 8. Payment API Tests
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-PAY-001 | Add valid payment method | High | regression, api, payment |
-| API-PAY-002 | Get saved payment methods for authenticated user | High | regression, api, payment |
-| API-PAY-003 | Payment response masks sensitive card data | High | regression, api, payment, security |
-| API-PAY-004 | Add payment method with missing card number is rejected | High | regression, api, payment, negative |
-| API-PAY-005 | Add payment method with invalid card number is rejected if backend validates it | High | regression, api, payment, validation |
-| API-PAY-006 | Add payment method with expired date is rejected if backend validates it | Medium | regression, api, payment, validation |
-| API-PAY-007 | Delete saved payment method | Medium | regression, api, payment |
-| API-PAY-008 | Deleted payment method no longer appears in payment list | Medium | regression, api, payment |
-| API-PAY-009 | User cannot access another user payment method | High | regression, api, payment, broken-access-control |
-| API-PAY-010 | User cannot delete another user payment method | High | regression, api, payment, broken-access-control |
+| API-PAY-001 | Add valid payment method | High | regression, api, payment | => Checked
+| API-PAY-002 | Get saved payment methods for authenticated user | High | regression, api, payment | => Checked
+| API-PAY-003 | Payment response masks sensitive card data | High | regression, api, payment, security | => Checked
+| API-PAY-004 | Add payment method with missing card number is rejected | High | regression, api, payment, negative | => Checked
+| API-PAY-005 | Add payment method with invalid card number is rejected if backend validates it | High | regression, api, payment, validation | => Checked
+| API-PAY-006 | Delete saved payment method | Medium | regression, api, payment | => Checked
+| API-PAY-007 | Deleted payment method no longer appears in payment list | Medium | regression, api, payment | => Checked
+| API-PAY-008 | User cannot access another user payment method | High | regression, api, payment, broken-access-control | => Checked
+| API-PAY-009 | User cannot delete another user payment method | High | regression, api, payment, broken-access-control | => Checked
 
-NB: For real client projects, payment API tests are very important because they involve sensitive data and business risk.
+NB: API-PAY-001, API-PAY-002 and API-PAY-003 are included in the same test case !
 
 ---
 
@@ -199,30 +194,27 @@ NB: For real client projects, payment API tests are very important because they 
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-FEED-001 | Submit valid feedback | High | regression, api, feedback |
-| API-FEED-002 | Feedback response contains created feedback data or success status | Medium | regression, api, feedback, contract |
-| API-FEED-003 | Submit feedback with empty comment is rejected | Medium | regression, api, feedback, negative |
-| API-FEED-004 | Submit feedback with invalid rating is rejected | Medium | regression, api, feedback, negative |
-| API-FEED-005 | Submit feedback without captcha answer is rejected if required | Medium | regression, api, feedback, validation |
-| API-FEED-006 | Submit feedback with script payload is safely handled | High | regression, api, feedback, security |
-| API-FEED-007 | Feedback endpoint does not expose internal server errors | High | regression, api, feedback, security |
-
+| API-FEED-001 | Submit valid feedback | High | regression, api, feedback | => Checked
+| API-FEED-002 | Feedback response contains created feedback data or success status | Medium | regression, api, feedback, contract | => Checked
+| API-FEED-003 | Submit feedback with empty comment is rejected | Medium | regression, api, feedback, negative | => Checked
+| API-FEED-004 | Submit feedback with invalid rating is rejected | Medium | regression, api, feedback, negative | => Checked
+| API-FEED-005 | Submit feedback without captcha answer is rejected if required | Medium | regression, api, feedback, validation | => Checked
+| API-FEED-006 | Submit feedback with script payload is safely handled | High | regression, api, feedback, security | => Checked
+| API-FEED-007 | Feedback endpoint does not expose internal server errors | High | regression, api, feedback, security | => Checked
+NB : API-FEED-001 and API-FEED-002 are both included in the same test case API-FEED-001
 ---
 
 ## 10. API Contract Tests
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-CONTRACT-001 | Successful responses use expected JSON format | High | regression, api, contract |
-| API-CONTRACT-002 | Error responses use consistent structure | High | regression, api, contract, negative |
-| API-CONTRACT-003 | Required fields are present in product responses | High | regression, api, contract, products |
-| API-CONTRACT-004 | Required fields are present in basket responses | High | regression, api, contract, basket |
-| API-CONTRACT-005 | Required fields are present in order responses | High | regression, api, contract, checkout |
-| API-CONTRACT-006 | Numeric fields use correct data types | Medium | regression, api, contract |
-| API-CONTRACT-007 | Date fields use expected format where applicable | Medium | regression, api, contract |
-| API-CONTRACT-008 | API does not return stack traces in response body | High | regression, api, contract, security |
-
-NB: Contract tests are strong portfolio material because they show that you are not only checking status code 200.
+| API-CONTRACT-001 | Successful responses use expected JSON format | High | regression, api, contract | => Checked
+| API-CONTRACT-002 | Error responses use consistent structure | High | regression, api, contract, negative | => Checked
+| API-CONTRACT-003 | Required fields are present in product responses | High | regression, api, contract, products | => Checked
+| API-CONTRACT-004 | Required fields are present in basket responses | High | regression, api, contract, basket | => Checked
+| API-CONTRACT-005 | Required fields are present in order responses | High | regression, api, contract, checkout | => Checked
+| API-CONTRACT-006 | Numeric fields use correct data types | Medium | regression, api, contract | => Checked
+| API-CONTRACT-007 | Date fields use expected format where applicable | Medium | regression, api, contract | => Checked
 
 ---
 
@@ -230,17 +222,17 @@ NB: Contract tests are strong portfolio material because they show that you are 
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-NEG-001 | Endpoint rejects unsupported HTTP method | Medium | regression, api, negative |
-| API-NEG-002 | Endpoint rejects malformed JSON body | High | regression, api, negative |
-| API-NEG-003 | Endpoint rejects missing required headers if required | Medium | regression, api, negative |
-| API-NEG-004 | Endpoint handles very long input safely | High | regression, api, negative, security |
-| API-NEG-005 | Endpoint handles special characters safely | High | regression, api, negative, security |
-| API-NEG-006 | Endpoint handles null values safely | Medium | regression, api, negative |
-| API-NEG-007 | Endpoint handles wrong data types safely | High | regression, api, negative |
-| API-NEG-008 | Endpoint returns controlled error for unknown resource ID | Medium | regression, api, negative |
-| API-NEG-009 | Endpoint does not return 500 for normal invalid input | High | regression, api, negative, reliability |
+| API-NEG-001 | Endpoint rejects unsupported HTTP method | Medium | regression, api, negative | => Checked
+| API-NEG-002 | Endpoint rejects malformed JSON body | High | regression, api, negative | => Checked
+| API-NEG-003 | Endpoint rejects missing required headers if required | Medium | regression, api, negative | => Checked
+| API-NEG-004 | Endpoint handles very long input safely | High | regression, api, negative, security | => Checked
+| API-NEG-005 | Endpoint handles special characters safely | High | regression, api, negative, security | => Checked
+| API-NEG-006 | Endpoint handles null values safely | Medium | regression, api, negative | => Checked
+| API-NEG-007 | Endpoint handles wrong data types safely | High | regression, api, negative | => Checked
+| API-NEG-008 | Endpoint returns controlled error for unknown resource ID | Medium | regression, api, negative | => Checked
+| API-NEG-009 | Endpoint does not return 500 for normal invalid input | High | regression, api, negative, reliability | => Checked
 
-NB: Use these as reusable patterns. Do not repeat all of them on every endpoint. Apply them to the most important endpoints only.
+NB: API-NEG-009 is included in both test cases API-NEG-007 and API-NEG-006
 
 ---
 
@@ -248,20 +240,10 @@ NB: Use these as reusable patterns. Do not repeat all of them on every endpoint.
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-SEC-001 | SQL injection payload in login is detected or produces documented vulnerability result | High | regression, api, security, sqli |
-| API-SEC-002 | SQL injection payload in search is handled safely | High | regression, api, security, sqli |
-| API-SEC-003 | XSS payload in search or feedback is handled safely | High | regression, api, security, xss |
-| API-SEC-004 | Protected endpoint cannot be accessed without authentication | High | regression, api, security, auth |
-| API-SEC-005 | Protected endpoint cannot be accessed with another user ID | High | regression, api, security, broken-access-control |
-| API-SEC-006 | Basket ID tampering does not expose another user basket | High | regression, api, security, broken-access-control |
-| API-SEC-007 | Address ID tampering does not expose another user address | High | regression, api, security, broken-access-control |
-| API-SEC-008 | Payment ID tampering does not expose another user payment method | High | regression, api, security, broken-access-control |
-| API-SEC-009 | API response does not expose password hashes or sensitive tokens | High | regression, api, security, data-exposure |
-| API-SEC-010 | Sensitive endpoints use proper authorization checks | High | regression, api, security, authorization |
-| API-SEC-011 | CORS headers are reviewed for unsafe configuration | Medium | regression, api, security, cors |
-| API-SEC-012 | Security headers are reviewed where applicable | Medium | regression, api, security, headers |
-
-NB: Since OWASP Juice Shop is intentionally vulnerable, some security tests may document vulnerabilities instead of expecting the application to block them. In the README, clearly mark those as expected findings.
+| API-SEC-001 | SQL injection payload in login is detected or produces documented vulnerability result | High | regression, api, security, sqli | => Checked
+| API-SEC-002 | SQL injection payload in search is handled safely | High | regression, api, security, sqli | => Checked
+| API-SEC-003 | XSS payload in search or feedback is handled safely | High | regression, api, security, xss | => Checked
+| API-SEC-004 | API response does not expose password hashes or sensitive tokens | High | regression, api, security, data-exposure | => Checked
 
 ---
 
@@ -269,12 +251,10 @@ NB: Since OWASP Juice Shop is intentionally vulnerable, some security tests may 
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
-| API-E2E-001 | Register user, login, add product to basket, checkout successfully | High | e2e, api, critical |
-| API-E2E-002 | Login existing user, add product, update quantity, remove product | High | e2e, api, basket |
-| API-E2E-003 | Login existing user, create address, create payment method, place order | High | e2e, api, checkout |
-| API-E2E-004 | Attempt checkout with missing required data and verify rejection | High | e2e, api, negative, checkout |
-| API-E2E-005 | User A cannot access User B basket, address, payment, or order data | High | e2e, api, security, broken-access-control |
-
-NB: Keep the E2E API suite small. It should prove business flow coverage without duplicating every lower-level API test.
+| API-E2E-001 | Register user, login, add product to basket, checkout successfully | High | e2e, api, critical | => Checked
+| API-E2E-002 | Login existing user, add product, update quantity, remove product | High | e2e, api, basket | => Checked
+| API-E2E-003 | Login existing user, create address, create payment method, place order | High | e2e, api, checkout | => Checked
+| API-E2E-004 | Attempt checkout with missing required data and verify rejection | High | e2e, api, negative, checkout | => Checked
+| API-E2E-005 | User A cannot access User B basket, address, payment, or order data | High | e2e, api, security, broken-access-control | => Checked
 
 ---

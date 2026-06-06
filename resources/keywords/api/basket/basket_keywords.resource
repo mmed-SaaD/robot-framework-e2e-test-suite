@@ -6,14 +6,14 @@ Resource    ../../api/auth/auth_keywords.resource
 
 *** Keywords ***
 Assert Item Is Not In Basket
-    [Arguments]    ${basket_id}    ${headers}    ${product_id}
-    ${response}=    GET On Session    owasp basket    /rest/basket/${basket_id}    expected_status=200    headers=${headers}
+    [Arguments]    ${basket_id}    ${headers}    ${product_id}    ${session_alias}=owasp basket
+    ${response}=    GET On Session    ${session_alias}    /rest/basket/${basket_id}    expected_status=200    headers=${headers}
     ${basket_products}=    Set Variable    ${response.json()}[data]
     Should Not Contain    ${response.json()}[data]    ${product_id}
 
 Assert Item Is Added To Basket
-    [Arguments]    ${basket_id}    ${headers}    ${product_id}    ${quantity}
-    ${response}=    GET On Session    owasp basket    /rest/basket/${basket_id}    expected_status=200    headers=${headers}
+    [Arguments]    ${basket_id}    ${headers}    ${product_id}    ${quantity}    ${session_alias}=owasp basket
+    ${response}=    GET On Session    ${session_alias}    /rest/basket/${basket_id}    expected_status=200    headers=${headers}
     ${basket_items_list}=    Set Variable    ${response.json()}[data][Products]
     ${basket_items_count}=    Get Length    ${basket_items_list}
     ${basket_is_empty}=    Run Keyword And Return Status    Should Be Equal As Integers    ${basket_items_count}    0
@@ -37,17 +37,17 @@ Assert Basket Access For Authenticated User
     ${response}=    GET On Session    owasp basket    /rest/basket/${basket_id}    headers=${headers}    expected_status=200
 
 Assert Valid Product Added To Basket
-    [Arguments]   ${product_id}=5    ${quantity}=2
+    [Arguments]   ${product_id}=5    ${quantity}=2    ${session_alias}=owasp basket
     ${token}    ${basket_id}=    Assert Valid Login Returns Authentication Token
     ${headers}=    Create Dictionary
     ...    Authorization=Bearer ${token}
-    Create Session    owasp basket    ${BASE_URL}
+    Create Session    ${session_alias}    ${BASE_URL}
     #################################### Retrieve Basket Before Adding Product ###############################################
-    Assert Item Is Not In Basket    ${basket_id}    ${headers}    ${product_id}
+    Assert Item Is Not In Basket    ${basket_id}    ${headers}    ${product_id}    ${session_alias}
     ####################################  Add Product To Basket ##############################################################
     ${body}=    Create Dictionary
     ...        ProductId=${product_id}   BasketId=${basket_id}    quantity=${quantity}
-    ${response}=    POST On Session    owasp basket    /api/BasketItems    json=${body}    expected_status=any    headers=${headers}
+    ${response}=    POST On Session    ${session_alias}    /api/BasketItems    json=${body}    expected_status=any    headers=${headers}
     ${response_html}=    Set Variable    ${response.text}
     ${no_product_found_err}=    Run Keyword And Return Status    Should Contain    ${response_html}    Error: No such product found!  
     IF    ${response.status_code} == 200
@@ -60,11 +60,11 @@ Assert Valid Product Added To Basket
         Log To Console    Invalid Product ID Is Handled Correctly
     END
     ##################################  Retrieve Basket After Adding Product #####################################################
-    Assert Item Is Added To Basket    ${basket_id}    ${headers}    ${product_id}    ${quantity}
+    Assert Item Is Added To Basket    ${basket_id}    ${headers}    ${product_id}    ${quantity}    ${session_alias} 
     #################################  Add the same product a second time #########################################################
     ${body}=    Create Dictionary
     ...        ProductId=${product_id}   BasketId=${basket_id}    quantity=${quantity}
-    ${response}=    POST On Session    owasp basket    /api/BasketItems    json=${body}    expected_status=any    headers=${headers}
+    ${response}=    POST On Session    ${session_alias}     /api/BasketItems    json=${body}    expected_status=any    headers=${headers}
     Should Not Be Equal As Integers    ${response.status_code}    200
     IF    ${response.status_code} == 500
        Log    Adding the same product twice is rejected; quantity update should use PUT /api/BasketItems/{id}.    WARN 
@@ -185,9 +185,6 @@ Assert Users Cannot Access Other User's Basket
     ${headers}=    Create Dictionary
     ...    Authorization=Bearer ${token}
     ${response}=    GET On Session    owasp basket    /rest/basket/${basket_id}    headers=${headers}    expected_status=any
-    IF    ${response.status_code} == 200
-        Log    User Has Successfully accessed another user's basket which is a critical vulnerability    WARN
-    END
-    
+    Should Not Be Equal As Integers    ${response.status_code}    200    msg=User Has Successfully accessed another user's basket which is a critical vulnerability
     
 

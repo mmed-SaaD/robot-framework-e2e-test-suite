@@ -5,7 +5,7 @@ Resource    ../../resources/keywords/api/registration/registration_keywords.reso
 #API-REG-001
 Register User With Valid Data
     [Tags]    regression    api    registration    critical
-    Assert User Registration With Valid Data    ${VALID_EMAIL3}
+    Assert User Registration With Valid Data    ${VALID_EMAIL}
 
 #API-REG-002
 Register User With Existing Email Is Rejected

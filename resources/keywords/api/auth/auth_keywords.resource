@@ -14,7 +14,8 @@ Login Process
     RETURN     ${response}
     
 Assert Valid Login Returns Authentication Token
-    ${response}=    Login Process    ${VALID_EMAIL}    ${VALID_PASSWORD}
+    [Arguments]    ${email}=${VALID_EMAIL} 
+    ${response}=    Login Process    ${email}   ${VALID_PASSWORD}
     Should Be Equal As Integers    ${response.status_code}    200
     Should Not Be Empty    ${response.json()}
 
