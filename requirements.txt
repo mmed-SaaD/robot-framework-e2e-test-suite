@@ -6,3 +6,5 @@ selenium==4.43.0
 robotframework-requests==0.9.7
 
 python-dotenv==1.0.1
+
+k6==2.0.0

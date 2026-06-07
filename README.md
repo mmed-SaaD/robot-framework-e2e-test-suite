@@ -54,3 +54,86 @@ The UI automation layer is functionally complete for the first phase of the fram
 Out of 77 implemented UI tests, 76 are passing successfully. The remaining failing test is kept visible for analysis and improvement, which reflects a realistic QA workflow rather than hiding unstable or application-specific behavior.
 
 This UI layer is now ready to be extended with the second phase of the framework: API testing.
+
+
+## API Automation Testing - Robot Framework
+
+The second phase of this project focuses on API automation testing for OWASP Juice Shop using Robot Framework and RequestsLibrary.
+
+The goal of this layer is to validate the application's REST API endpoints, business workflows, authentication mechanisms, input validation, error handling, data integrity, and documented security vulnerabilities.
+
+### API Test Execution Summary
+
+| Metric                             |           Result |
+| ---------------------------------- | ---------------: |
+| Total API Tests                    |               86 |
+| Functional Tests Passed            |               66 |
+| Security Vulnerabilities Validated |               20 |
+| Total Coverage                     |               86 |
+| Framework                          |  Robot Framework |
+| API Library                        |  RequestsLibrary |
+| Application Under Test             | OWASP Juice Shop |
+
+### Covered API Modules
+
+The API automation suite currently covers the following modules:
+
+| Module                   | Coverage                                                                                                             |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| Authentication           | Valid login, invalid login, empty credentials, malformed credentials, token generation, authorization validation     |
+| Registration             | Valid registration, duplicate account detection, missing required fields, invalid email formats, password validation |
+| Products                 | Product retrieval, product details, catalogue validation, search functionality, response schema validation           |
+| Basket Management        | Create basket, add product, update quantity, remove product, basket persistence, basket retrieval                    |
+| Checkout Flow            | Basket validation, address selection, delivery method selection, payment method selection, order placement           |
+| Address Management       | Create address, retrieve addresses, validate mandatory fields, verify address persistence                            |
+| Payment Methods          | Add payment method, validate card information, retrieve payment methods, delete payment method                       |
+| Feedback                 | Submit feedback, captcha validation, invalid feedback scenarios, response validation                                 |
+| API Contract Validation  | Response structure verification, required fields validation, status code validation                                  |
+| Negative Testing         | Invalid endpoints, unsupported HTTP methods, malformed requests, missing authorization headers                       |
+| End-to-End API Workflows | Registration → Login → Basket → Checkout complete business flow                                                      |
+
+### Security Testing Coverage
+
+The API suite also validates multiple OWASP-related security scenarios:
+
+| Category                   | Coverage                                                                  |
+| -------------------------- | ------------------------------------------------------------------------- |
+| SQL Injection              | Login endpoint testing, search endpoint testing, vulnerability validation |
+| Cross-Site Scripting (XSS) | Feedback and input field payload validation                               |
+| Broken Access Control      | Unauthorized resource access attempts                                     |
+| Sensitive Data Exposure    | Verification of exposed data in API responses                             |
+| Input Validation           | Invalid payloads, malformed requests, boundary conditions                 |
+| Error Handling             | Internal error exposure checks and stack trace detection                  |
+
+### Key Testing Practices Applied
+
+* Modular Robot Framework architecture
+* Reusable API keywords
+* Session and authentication management
+* Dynamic test data generation
+* Positive and negative API coverage
+* Contract and schema validation
+* Security-focused test scenarios
+* End-to-end business workflow validation
+* Response content verification
+* Status code and error handling validation
+
+### Security Validation Notes
+
+OWASP Juice Shop is intentionally vulnerable by design. Security-related tests are therefore used to validate and document known vulnerabilities rather than expecting secure behavior.
+
+The framework distinguishes between:
+
+* Functional API validation
+* Negative API validation
+* Security vulnerability validation
+
+This approach allows the test suite to verify both expected business functionality and intentionally vulnerable application behavior.
+
+### Current Status
+
+The API automation layer is functionally complete and provides broad coverage across the application's core business workflows and security scenarios.
+
+The suite includes 86 implemented API tests covering authentication, registration, products, basket operations, checkout, feedback, contract validation, negative testing, and security validation.
+
+With both the UI and API layers implemented, the framework is ready to be extended with additional quality engineering capabilities such as database validation, performance testing, security scanning, reporting enhancements, and CI/CD integration.
