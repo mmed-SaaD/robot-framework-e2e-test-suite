@@ -8,7 +8,7 @@ const PASSWORD = __ENV.PASSWORD;
 
 export const options = {
     vus: 15,
-    duration: '3m',
+    duration: '25m',
     thresholds : {
         http_req_failed : ['rate<0.05'],
         'http_req_duration{type:search}' : ['p(95)<1000'],
@@ -19,14 +19,14 @@ export const options = {
 };
 
 export default function(){
-    // PERF-PROD-001
+    // PERF-PROD-004
     let searchResp = http.get(`${BASE_URL}/rest/products/search?q=${searchKeyword}`, {tags : {type:'search'}});
     check(searchResp , {
             'product search status is 200': (r) => r.status === 200,
             'product search response is not empty' : (r) => r.body.length != 0,
     });
     
-    // PERF-AUTH-001
+    // PERF-AUTH-004
     let loginCredentials = JSON.stringify({
             email : EMAIL,
             password : PASSWORD,
@@ -34,7 +34,7 @@ export default function(){
     let headers = {
             'Content-Type' : 'application/json',
         }
-    let loginRes = http.post(`${BASE_URL}/rest/user/login`, loginCredentials ,{headers, tags : {type:'auth'}});
+    let loginRes = http.post(`${BASE_URL}/rest/user/login`, loginCredentials , {headers, tags : {type:'auth'}});
         check(loginRes , {
             'response status should be 200': (r) => r.status === 200,
         });
@@ -52,9 +52,9 @@ export default function(){
             'Authorization' : `Bearer ${token}`,
     }
 
-    // PERF-BASKET-001
+    // PERF-BASKET-004
     let basketPayload = JSON.stringify({
-            ProductId : 8,
+            ProductId : 1,
             BasketId : basketId,
             quantity : 1,
     });
@@ -107,7 +107,7 @@ export default function(){
         }
     }
 
-    //PERF-FEED-001
+    //PERF-FEED-004
     let captchaRes = http.get(`${BASE_URL}/rest/captcha`, { headers: authHeaders, tags : {type:'feedback'}});
     if(captchaRes.status === 200){
     

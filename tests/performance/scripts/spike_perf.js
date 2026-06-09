@@ -7,14 +7,19 @@ const EMAIL = __ENV.EMAIL;
 const PASSWORD = __ENV.PASSWORD;
 
 export const options = {
-    vus: 15,
-    duration: '3m',
+    stages : [
+        {duration : '3s', target : 15},
+        {duration : '5s', target : 200},
+        {duration : '15s', target : 200},
+        {duration : '3s', target : 15},
+        {duration : '30s', target : 0},
+    ],
     thresholds : {
         http_req_failed : ['rate<0.05'],
-        'http_req_duration{type:search}' : ['p(95)<1000'],
-        'http_req_duration{type:auth}' : ['p(95)<1500'],
-        'http_req_duration{type:basket}' : ['p(95)<2000'],
-        'http_req_duration{type:feedback}' : ['p(95)<2000'],
+        'http_req_duration{type:search}' : ['p(95)<2000'],
+        'http_req_duration{type:auth}' : ['p(95)<2500'],
+        'http_req_duration{type:basket}' : ['p(95)<3000'],
+        'http_req_duration{type:feedback}' : ['p(95)<3500'],
     }
 };
 
@@ -34,7 +39,7 @@ export default function(){
     let headers = {
             'Content-Type' : 'application/json',
         }
-    let loginRes = http.post(`${BASE_URL}/rest/user/login`, loginCredentials ,{headers, tags : {type:'auth'}});
+    let loginRes = http.post(`${BASE_URL}/rest/user/login`, loginCredentials , {headers, tags : {type:'auth'}});
         check(loginRes , {
             'response status should be 200': (r) => r.status === 200,
         });
@@ -54,7 +59,7 @@ export default function(){
 
     // PERF-BASKET-001
     let basketPayload = JSON.stringify({
-            ProductId : 8,
+            ProductId : 21,
             BasketId : basketId,
             quantity : 1,
     });

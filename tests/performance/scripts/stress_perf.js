@@ -7,26 +7,31 @@ const EMAIL = __ENV.EMAIL;
 const PASSWORD = __ENV.PASSWORD;
 
 export const options = {
-    vus: 15,
-    duration: '3m',
+    stages : [
+        {duration : '30s', target : 15},
+        {duration : '1m', target : 30},
+        {duration : '1m', target : 60},
+        {duration : '1m', target : 120},
+        {duration : '30s', target : 0},
+    ],
     thresholds : {
         http_req_failed : ['rate<0.05'],
-        'http_req_duration{type:search}' : ['p(95)<1000'],
-        'http_req_duration{type:auth}' : ['p(95)<1500'],
-        'http_req_duration{type:basket}' : ['p(95)<2000'],
-        'http_req_duration{type:feedback}' : ['p(95)<2000'],
+        'http_req_duration{type:search}' : ['p(95)<2000'],
+        'http_req_duration{type:auth}' : ['p(95)<2500'],
+        'http_req_duration{type:basket}' : ['p(95)<3000'],
+        'http_req_duration{type:feedback}' : ['p(95)<3500'],
     }
 };
 
 export default function(){
-    // PERF-PROD-001
+    // PERF-PROD-002
     let searchResp = http.get(`${BASE_URL}/rest/products/search?q=${searchKeyword}`, {tags : {type:'search'}});
     check(searchResp , {
             'product search status is 200': (r) => r.status === 200,
             'product search response is not empty' : (r) => r.body.length != 0,
     });
     
-    // PERF-AUTH-001
+    // PERF-AUTH-002
     let loginCredentials = JSON.stringify({
             email : EMAIL,
             password : PASSWORD,
@@ -34,7 +39,7 @@ export default function(){
     let headers = {
             'Content-Type' : 'application/json',
         }
-    let loginRes = http.post(`${BASE_URL}/rest/user/login`, loginCredentials ,{headers, tags : {type:'auth'}});
+    let loginRes = http.post(`${BASE_URL}/rest/user/login`, loginCredentials , {headers, tags : {type:'auth'}});
         check(loginRes , {
             'response status should be 200': (r) => r.status === 200,
         });
@@ -52,9 +57,9 @@ export default function(){
             'Authorization' : `Bearer ${token}`,
     }
 
-    // PERF-BASKET-001
+    // PERF-BASKET-002
     let basketPayload = JSON.stringify({
-            ProductId : 8,
+            ProductId : 13,
             BasketId : basketId,
             quantity : 1,
     });
@@ -107,7 +112,7 @@ export default function(){
         }
     }
 
-    //PERF-FEED-001
+    //PERF-FEED-002
     let captchaRes = http.get(`${BASE_URL}/rest/captcha`, { headers: authHeaders, tags : {type:'feedback'}});
     if(captchaRes.status === 200){
     

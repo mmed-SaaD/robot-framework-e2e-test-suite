@@ -137,3 +137,50 @@ The API automation layer is functionally complete and provides broad coverage ac
 The suite includes 86 implemented API tests covering authentication, registration, products, basket operations, checkout, feedback, contract validation, negative testing, and security validation.
 
 With both the UI and API layers implemented, the framework is ready to be extended with additional quality engineering capabilities such as database validation, performance testing, security scanning, reporting enhancements, and CI/CD integration.
+
+## Grafana Dashboards
+
+The following Grafana dashboards were used to visualize performance metrics collected during test execution. Metrics were exported from k6 to InfluxDB and analyzed in real time.
+
+### Smoke Testing Dashboard
+
+![Smoke Testing Dashboard](artifacts/figures/smoke.png)
+
+---
+
+### Load Testing Dashboard
+
+![Smoke Testing Dashboard](artifacts/figures/load.png)
+
+---
+
+### Stress Testing Dashboard
+
+![Smoke Testing Dashboard](artifacts/figures/stress.png)
+
+---
+
+### Spike Testing Dashboard
+
+![Smoke Testing Dashboard](artifacts/figures/spike.png)
+
+---
+
+### Soak Testing Dashboard
+
+![Smoke Testing Dashboard](artifacts/figures/soak.png)
+
+---
+
+### Metrics Visualized
+
+* Average Response Time
+* P90 Response Time
+* P95 Response Time
+* Request Throughput
+* Requests Per Second (RPS)
+* Virtual Users (VUs)
+* Error Rate
+* Iteration Duration
+* Endpoint-Level Performance Metrics
+* Test Success Rate
