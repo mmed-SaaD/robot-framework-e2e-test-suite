@@ -144,31 +144,31 @@ The following Grafana dashboards were used to visualize performance metrics coll
 
 ### Smoke Testing Dashboard
 
-![Smoke Testing Dashboard](artifacts/figures/smoke.png)
+![Smoke Testing Dashboard](figures/smoke.png)
 
 ---
 
 ### Load Testing Dashboard
 
-![Smoke Testing Dashboard](artifacts/figures/load.png)
+![Smoke Testing Dashboard](figures/load.png)
 
 ---
 
 ### Stress Testing Dashboard
 
-![Smoke Testing Dashboard](artifacts/figures/stress.png)
+![Smoke Testing Dashboard](figures/stress.png)
 
 ---
 
 ### Spike Testing Dashboard
 
-![Smoke Testing Dashboard](artifacts/figures/spike.png)
+![Smoke Testing Dashboard](figures/spike.png)
 
 ---
 
 ### Soak Testing Dashboard
 
-![Smoke Testing Dashboard](artifacts/figures/soak.png)
+![Smoke Testing Dashboard](figures/soak.png)
 
 ---
 
