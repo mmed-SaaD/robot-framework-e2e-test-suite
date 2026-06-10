@@ -150,37 +150,74 @@ The following Grafana dashboards were used to visualize performance metrics coll
 
 ### Load Testing Dashboard
 
-![Smoke Testing Dashboard](figures/load.png)
+![Load Testing Dashboard](figures/load.png)
 
 ---
 
 ### Stress Testing Dashboard
 
-![Smoke Testing Dashboard](figures/stress.png)
+![Stress Testing Dashboard](figures/stress.png)
 
 ---
 
 ### Spike Testing Dashboard
 
-![Smoke Testing Dashboard](figures/spike.png)
+![Spike Testing Dashboard](figures/spike.png)
 
 ---
 
 ### Soak Testing Dashboard
 
-![Smoke Testing Dashboard](figures/soak.png)
+![Soak Testing Dashboard](figures/soak.png)
 
 ---
 
-### Metrics Visualized
+Status: UI complete | API complete | Performance Complete | DB in progress
 
-* Average Response Time
-* P90 Response Time
-* P95 Response Time
-* Request Throughput
-* Requests Per Second (RPS)
-* Virtual Users (VUs)
-* Error Rate
-* Iteration Duration
-* Endpoint-Level Performance Metrics
-* Test Success Rate
+
+# Database Automation Testing - Robot Framework
+
+The third phase of this project focuses on direct database validation for OWASP Juice Shop using Robot Framework and DatabaseLibrary.
+
+The goal of this layer is to verify data persistence, integrity, security, and database query performance by validating the data stored in the SQLite database after UI and API operations.
+
+### Database Test Execution Summary
+
+| Metric         |          Result |
+| -------------- | --------------: |
+| Total DB Tests |              11 |
+| Passed         |              11 |
+| Failed         |               0 |
+| Pass Rate      |            100% |
+| Framework      | Robot Framework |
+| DB Library     | DatabaseLibrary |
+| Database       |          SQLite |
+
+### Covered Database Modules
+
+| Module                   | Coverage                                                                                 |
+| ------------------------ | ---------------------------------------------------------------------------------------- |
+| User Data Validation     | User creation, duplicate email prevention, password hashing verification                 |
+| Product Validation       | Product data consistency and update persistence                                          |
+| Basket Data Validation   | Product addition, quantity update, and product removal validation                        |
+| Feedback Data Validation | Feedback creation, update, and deletion persistence                                      |
+| Query Performance        | Product queries, user lookup performance, join query execution, repeated query stability |
+| Database Security        | Verification that sensitive user passwords are not stored in plaintext                   |
+
+### Key Testing Practices Applied
+
+* Direct database validation after UI and API workflows
+* Insert, update, and delete operation verification
+* Data integrity and relationship consistency checks
+* Dynamic test data generation and cleanup
+* Database query performance measurement
+* Security validation of sensitive stored data
+* Parameterized SQL queries to prevent hardcoded test data
+
+### Current Status
+
+The database automation layer is complete and provides coverage for the most critical database operations and integrity checks.
+
+The suite validates user data, product records, basket operations, feedback persistence, query performance, and security-related database checks.
+
+With UI, API, and Database testing implemented, the framework now provides a complete multi-layer quality validation approach and is ready to be extended with performance testing, security scanning, advanced reporting, and CI/CD integration.

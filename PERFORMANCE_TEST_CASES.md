@@ -41,7 +41,7 @@ Avoid performance testing every API endpoint. Focus on endpoints that are:
 ---
 
 
-## 1. Performance Smoke Tests
+## 1. Performance Smoke Tests => Checked
 
 | ID | Test Case | Endpoint Area | Priority | Suggested Tags |
 |---|---|---|---:|---|
@@ -52,7 +52,7 @@ Avoid performance testing every API endpoint. Focus on endpoints that are:
 
 ---
 
-## 2. Product Search Performance Tests
+## 2. Product Search Performance Tests => Checked
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
@@ -63,7 +63,7 @@ Avoid performance testing every API endpoint. Focus on endpoints that are:
 
 ---
 
-## 3. Login Performance Tests
+## 3. Login Performance Tests => Checked
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
@@ -74,7 +74,7 @@ Avoid performance testing every API endpoint. Focus on endpoints that are:
 
 ---
 
-## 4. Basket Performance Tests
+## 4. Basket Performance Tests => Checked
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
@@ -85,7 +85,7 @@ Avoid performance testing every API endpoint. Focus on endpoints that are:
 
 ---
 
-## 5. Feedback Performance Tests
+## 5. Feedback Performance Tests => Checked
 
 | ID | Test Case | Priority | Suggested Tags |
 |---|---|---:|---|
