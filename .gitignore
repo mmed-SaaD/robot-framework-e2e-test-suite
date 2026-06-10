@@ -4,6 +4,7 @@ __pycache__/
 .venv/
 .env
 
+PIPE
 artifacts/
 results/
 output.xml
@@ -11,4 +12,5 @@ log.html
 report.html
 
 .DS_Store
-.vscode/
+.vscode/PIPE
+PIPE
