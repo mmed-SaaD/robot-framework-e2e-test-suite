@@ -92,8 +92,9 @@ Assert Saved Addresses Page Opens
     Page Should Contain    My saved addresses
 
 Assert Valid Address Added
+    [Arguments]    ${name}=${NAME2}
     ${address_infos_list}=    Create Dictionary
-    ...    country=${COUNTRY2}    name=${NAME2}    mobile_number=${MOBILE_NUMBER2}    
+    ...    country=${COUNTRY2}    name=${name}    mobile_number=${MOBILE_NUMBER2}    
     ...    zip=${ZIP2}    address=${ADDRESS2}    city=${CITY2}    state=${STATE2}
     Assert Saved Addresses Page Opens
     Click Button    ${add_new_address_button}

@@ -36,3 +36,17 @@ Assert Page Refresh Does Not Break State
     Assert Account Page Opens
     Reload Page
     Page Should Contain    User Profile
+
+Assert Support Chat Opens
+    Assert Menu Opens
+    Wait Until Element Is Visible    ${support_chat}
+    Click Element    ${support_chat}
+    Page Should Contain    Support Chat
+
+Assert Support Chat Feature Is Functional
+    [Arguments]    ${payload}
+    Assert Support Chat Opens
+    Press Keys    ${chat_support_message_input}    ${payload}    
+    Press Keys    ${chat_support_message_input}    ENTER
+    ${alert_is_present}=    Run Keyword And Return Status    Alert Should Be Present
+    Should Be Equal    ${alert_is_present}    ${False}

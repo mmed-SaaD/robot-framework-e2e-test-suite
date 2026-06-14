@@ -158,6 +158,7 @@ NB: UI-CHECKOUT-001 and UI-CHECKOUT-002 are included in the same test case
 | UI-ACC-002 | View user profile | Medium | regression, ui, account | => Checked
 | UI-ACC-003 | Change password | High | regression, ui, account, auth | => Checked
 | UI-ACC-004 | Try changing password with wrong current password | High | regression, ui, account, negative | => Checked
+| UI-ACC-005 | Change user's username | Medium | regression, ui, account | => Checked
 
 NB :  UI-ACC-001 and  UI-ACC-002 are included in the same test case
 ---
@@ -187,6 +188,7 @@ NB : UI-FEED-005 and UI-FEED-004 are included in UI-FEED-002 test case
 | UI-NAV-005 | Account link redirects to profile or login | High | regression, ui, navigation, account | => Checked
 | UI-NAV-006 | Browser back button works correctly | Medium | regression, ui, navigation | => Checked
 | UI-NAV-007 | Page refresh does not break current state | Medium | regression, ui, navigation, session | => Checked
+| UI-NAV-008 | Support Chat Opens and functions correctly | Medium | regression, ui, navigation | => Checked
 
 NB : UI-NAV-002, UI-NAV-003, UI-NAV-004 and UI-NAV-005 are implicitly included in various test cases !  => coverage through functional flows.
 

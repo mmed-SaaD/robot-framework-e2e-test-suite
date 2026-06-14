@@ -19,3 +19,8 @@ Change Password
 Change Password With Wrong Current Password
     [Tags]    regression    ui    account    negative
     Assert Password Doesnt Change With Wrong Current Password
+
+#UI-ACC-005
+Change Username
+    [Tags]    regression    ui    account
+    Assert Username Is Changed    brook

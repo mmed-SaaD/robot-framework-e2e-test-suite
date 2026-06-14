@@ -56,3 +56,13 @@ Assert Password Doesnt Change With Wrong Current Password
     Input Text    ${repeat_new_password_input}    ${NEW_PASSWORD}
     Click Button    ${change_password_button}
     Page Should Contain    Current password is not correct.
+
+Assert Username Is Changed
+    [Arguments]    ${username}    
+    Assert Account Page Opens
+    Press Keys    ${username_input}    ${username}
+    Press Keys    ${username_input}    ENTER
+    ${text}=    Get Text    ${username_display_field}
+    ${alert_is_present}=    Run Keyword And Return Status    Alert Should Be Present
+    Should Be Equal    ${alert_is_present}    ${False}
+    

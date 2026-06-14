@@ -19,3 +19,8 @@ Browser Back Button Works Correctly
 Page Refresh Does Not Break Current State
     [Tags]    regression    ui    navigation    session
     Assert Page Refresh Does Not Break State
+
+#UI-NAV-008
+Support Chat Opens And Functions Correctly
+    [Tags]    regression    ui    navigation
+    Assert Support Chat Feature Is Functional    Hello Chat !

@@ -4,6 +4,7 @@ Library    String
 Library    Collections
 Resource    ../auth/auth_keywords.resource
 Resource    ../../../locators/products/products.resource
+Resource    ../../../locators/navigation/navigation.resource
 Resource    ../../../variables/products/products_variables.resource
 Resource    ../../global_keywords.resource
 
@@ -12,6 +13,19 @@ Pretest Build
     Open Browser To Main Page
     Valid Log In
     Assert Juice List IS Visible
+
+Search Product
+    [Arguments]    ${search_value}
+    ${welcome_banner}=    Run Keyword And Return Status    Page Should Contain    Welcome to OWASP Juice Shop!
+    IF    ${welcome_banner}
+        Click Button    ${close_welcome_banner}
+        Click Element    ${search_icon}
+        Wait Until Element Is Visible    ${search_input}
+    END
+    Press Keys    ${search_input}    CTRL+A    BACKSPACE
+    Press Keys    ${search_input}    ${search_value}
+    Press Keys    ${search_input}    ENTER
+
 
 Assert Products Are Visible
     ${products_count}=    Get Element Count    ${product_card}    

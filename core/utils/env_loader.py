@@ -52,3 +52,7 @@ VALID_EMAIL10=os.getenv("VALID_EMAIL10")
 
 ROGUE_TOKEN=os.getenv("ROGUE_TOKEN")
 PATH_TO_DB=os.getenv("PATH_TO_DB")
+
+ZAP_URL=os.getenv("ZAP_URL")
+REPORT_DIR=os.getenv("REPORT_DIR")
+REPORT_FILE=os.getenv("REPORT_FILE")
