@@ -22,13 +22,23 @@ Close Welcome Banner
     END
 
 Open Browser To Main Page
+    ${headless}=    Set Variable    %{HEADLESS=false}
+
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].EdgeOptions()    sys
-    Call Method    ${options}    add_argument    --start-maximized
     Call Method    ${options}    add_argument    --disable-gpu
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --window-size=1920,1080
+
+    IF    '${headless}' == 'true'
+        Call Method    ${options}    add_argument    --headless=new
+    ELSE
+        Call Method    ${options}    add_argument    --start-maximized
+    END
 
     Create WebDriver    Edge    options=${options}
     Go To    ${BASE_URL}
-    
+
     Wait Until Initial Snackbar Disappears
     Wait Until Page Contains    OWASP Juice Shop    10s
     Close Welcome Banner

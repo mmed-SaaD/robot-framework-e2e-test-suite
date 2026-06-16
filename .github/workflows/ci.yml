@@ -62,6 +62,8 @@ jobs:
           BASE_URL: http://127.0.0.1:3000
           VALID_EMAIL: ${{ secrets.VALID_EMAIL }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+          BROWSER: chrome
+          HEADLESS: true
         run: |
           mkdir -p results
           robot \
