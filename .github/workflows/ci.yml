@@ -18,6 +18,14 @@ jobs:
           - 3000:3000
 
     steps:
+      - name: Install Microsoft Edge
+      run: |
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/
+        echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/edge stable main" | sudo tee /etc/apt/sources.list.d/microsoft-edge.list
+        sudo apt update
+        sudo apt install microsoft-edge-stable
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
