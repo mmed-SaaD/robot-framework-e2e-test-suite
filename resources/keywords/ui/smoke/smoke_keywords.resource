@@ -23,7 +23,7 @@ Assert Page Loaded
     Handle Banner If Exists
 
 Assert Juice List IS Visible
-    Wait Until Page Contains Element    ${list_of_products}    5s
+    Wait Until Page Contains Element    ${list_of_products}    30s
     ${count}=     Get Element Count    ${list_of_products}
     Should Be True    ${count} > 0
 

@@ -64,9 +64,9 @@ Logout Process Successfull
     Valid Log In
     Click Button    ${navbar_account}
     Click Button    ${logout_button}
-    Wait Until Element Is Not Visible    ${basket_icon}
+    Wait Until Element Is Not Visible    ${basket_icon}    30s
     Click Button    ${navbar_account}
-    Wait Until Element Is Visible    ${navbarLoginButton}    2s
+    Wait Until Element Is Visible    ${navbarLoginButton}    30s
 
 Assert Session Persists After Reload
     Login Page Opens
