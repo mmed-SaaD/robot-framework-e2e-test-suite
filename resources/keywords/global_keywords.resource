@@ -31,7 +31,7 @@ Open Browser To Main Page
     Call Method    ${options}    add_argument    --window-size\=1920,1080
 
     IF    '${headless}' == 'true'
-        Call Method    ${options}    add_argument    --headless
+        Call Method    ${options}    add_argument    --headless\=new
     ELSE
         Call Method    ${options}    add_argument    --start-maximized
     END
@@ -39,10 +39,13 @@ Open Browser To Main Page
     Create WebDriver    Edge    options=${options}
     Go To    ${BASE_URL}
 
-    Wait Until Initial Snackbar Disappears
-    Wait Until Page Contains    OWASP Juice Shop    10s
-    Close Welcome Banner
-    Close Cookies Message
+    Wait Until Page Contains    OWASP Juice Shop    30s
+    Sleep    3s
+
+    Run Keyword And Ignore Error    Close Welcome Banner
+    Run Keyword And Ignore Error    Close Cookies Message
+
+    Wait Until Page Contains Element    xpath=//mat-card    30s
 
     Set Screenshot Directory    artifacts/screenshots
 
