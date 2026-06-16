@@ -17,8 +17,6 @@ Close Welcome Banner
     ${welcome_banner}=    Run Keyword And Return Status    Page Should Contain    Welcome to OWASP Juice Shop!
     IF    ${welcome_banner}
         Click Button    ${close_welcome_banner}
-        Click Element    ${search_icon}
-        Wait Until Element Is Visible    ${search_input}
     END
 
 Open Browser To Main Page
