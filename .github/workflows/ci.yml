@@ -60,6 +60,8 @@ jobs:
       - name: Run UI/API/DB Robot tests
         env:
           BASE_URL: http://127.0.0.1:3000
+          REGISTRATION_URL: "http://localhost:3000/#/register"
+          LOGIN_URL: "http://127.0.0.1:3000/#/login"
           VALID_EMAIL: ${{ secrets.VALID_EMAIL }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
           BROWSER: chrome
@@ -69,6 +71,8 @@ jobs:
           robot \
             --outputdir results \
             --variable BASE_URL:http://127.0.0.1:3000 \
+            --variable REGISTRATION_URL:"http://localhost:3000/#/register" \
+            --variable LOGIN_URL:"http://127.0.0.1:3000/#/login" \
             --variable HEADLESS:true \
             --exclude performance \
             --exclude security \
