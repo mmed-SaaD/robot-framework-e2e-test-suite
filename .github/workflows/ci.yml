@@ -68,6 +68,8 @@ jobs:
           mkdir -p results
           robot \
             --outputdir results \
+            --variable BASE_URL:http://127.0.0.1:3000 \
+            --variable HEADLESS:true \
             --exclude performance \
             --exclude security \
             tests
