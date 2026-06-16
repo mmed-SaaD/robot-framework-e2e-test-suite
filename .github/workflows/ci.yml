@@ -1,0 +1,74 @@
+name: Robot Framework CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  robot-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      juice-shop:
+        image: bkimminich/juice-shop
+        ports:
+          - 3000:3000
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install ChromeDriver
+        uses: nanasess/setup-chromedriver@v2
+
+      - name: Wait for OWASP Juice Shop
+        run: |
+          for i in {1..30}; do
+            if curl -s http://127.0.0.1:3000 > /dev/null; then
+              echo "Juice Shop is ready"
+              exit 0
+            fi
+            echo "Waiting for Juice Shop..."
+            sleep 5
+          done
+          exit 1
+
+      - name: Run UI/API/DB Robot tests
+        env:
+          BASE_URL: http://127.0.0.1:3000
+          VALID_EMAIL: ${{ secrets.VALID_EMAIL }}
+          VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+        run: |
+          mkdir -p results
+          robot \
+            --outputdir results \
+            --exclude performance \
+            --exclude security \
+            tests
+
+      - name: Upload Robot Framework reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-framework-results
+          path: |
+            results/log.html
+            results/report.html
+            results/output.xml
+            results/*.png
