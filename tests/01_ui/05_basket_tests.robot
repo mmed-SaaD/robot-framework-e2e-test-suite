@@ -58,6 +58,11 @@ Checkout With Empty Basket
     Assert Checkout Disabled With Empty Bakset
 
 #UI-BASKET-012
-Checkout Status After Refreshinf Page
+Checkout Status After Refreshing Page
     [Tags]    regression    ui    basket    session
     Assert Basket Persists After Refresh
+
+#UI-BASKET-002
+Add Multiple Products To Basket For e2e Test Suite
+    [Tags]    regression    ui    basket
+    Assert Multiple Items Added To Bakset

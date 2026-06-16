@@ -221,6 +221,7 @@ Wait Until ZAP Passive Scan Is Completed
             RETURN
         END
         Log    ${remaining} remaining records to scan !
+        Sleep    ${SLEEP_TIME}
     END
     Fail    Passive scan did not finish within timeout
     

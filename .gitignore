@@ -1,16 +1,20 @@
 __pycache__/
 *.pyc
 
+venv/
 .venv/
 .env
 
 PIPE
 artifacts/
 results/
+reports/
 output.xml
 log.html
 report.html
+selenium-screenshot-*.png
 
 .DS_Store
-.vscode/PIPE
+.vscode/
+.idea/
 PIPE

@@ -2,12 +2,38 @@
 Library    SeleniumLibrary
 Variables    ../../core/utils/env_loader.py
 Resource    ../../resources/locators/products/products.resource
+Resource    ../../resources/locators/navigation/navigation.resource
 
 *** Keywords ***
+Wait Until Initial Snackbar Disappears
+    ${snackbar_exists}=    Run Keyword And Return Status
+    ...    Wait Until Element Is Visible    .mat-mdc-snack-bar-label.mdc-snackbar__label    2s
+
+    IF    ${snackbar_exists}
+        Wait Until Element Is Not Visible    .mat-mdc-snack-bar-label.mdc-snackbar__label    10s
+    END
+
+Close Welcome Banner
+    ${welcome_banner}=    Run Keyword And Return Status    Page Should Contain    Welcome to OWASP Juice Shop!
+    IF    ${welcome_banner}
+        Click Button    ${close_welcome_banner}
+        Click Element    ${search_icon}
+        Wait Until Element Is Visible    ${search_input}
+    END
+
 Open Browser To Main Page
-    Open Browser    ${BASE_URL}    edge   /home/wayne/msedgedriver.exe
-    Maximize Browser Window
-    Set Selenium Speed    .1s
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].EdgeOptions()    sys
+    Call Method    ${options}    add_argument    --start-maximized
+    Call Method    ${options}    add_argument    --disable-gpu
+
+    Create WebDriver    Edge    options=${options}
+    Go To    ${BASE_URL}
+    
+    Wait Until Initial Snackbar Disappears
+    Wait Until Page Contains    OWASP Juice Shop    10s
+    Close Welcome Banner
+    Close Cookies Message
+
     Set Screenshot Directory    artifacts/screenshots
 
 Close Browser Session

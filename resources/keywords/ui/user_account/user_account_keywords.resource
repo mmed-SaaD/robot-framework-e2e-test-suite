@@ -29,11 +29,12 @@ Assert Account Page Opens
 
 Assert Password Is Changed
     Open Change Password Page
+    Wait Until Initial Snackbar Disappears
     Input Text    ${current_password_input}    ${VALID_PASSWORD}
     Input Text    ${new_password_input}    ${NEW_PASSWORD}
     Input Text    ${repeat_new_password_input}    ${NEW_PASSWORD}
     Click Button    ${change_password_button}
-    Page Should Contain    Your password was successfully changed.
+    Wait Until Page Contains    Your password was successfully changed.
     Click Button    ${navbar_account}
     Click Button    ${logout_button}
     Valid Log In    password=${NEW_PASSWORD}
@@ -44,7 +45,7 @@ Assert Password Is Changed
     Input Text    ${new_password_input}    ${VALID_PASSWORD}
     Input Text    ${repeat_new_password_input}    ${VALID_PASSWORD}
     Click Button    ${change_password_button}
-    Page Should Contain    Your password was successfully changed.
+    Wait Until Page Contains    Your password was successfully changed.
     Click Button    ${navbar_account}
     Click Button    ${logout_button}
     Valid Log In    password=${VALID_PASSWORD}

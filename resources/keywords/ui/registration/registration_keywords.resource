@@ -3,11 +3,14 @@ Library     SeleniumLibrary
 Variables    ../../../../core/utils/env_loader.py
 Resource    ../../../locators/registration/registration.resource
 Resource    ../../../variables/registration/registration_variables.resource
+Resource    ../../global_keywords.resource
 
 *** Keywords ***
 Assert Registration Page Opens
     Go To    ${REGISTRATION_URL}
+    Close Welcome Banner
     Wait Until Element Is Visible    ${registration_form}
+    Wait Until Initial Snackbar Disappears
 
 Create New Customer Account With Valid Data
     Assert Registration Page Opens

@@ -13,3 +13,4 @@ ${order_history_button}    css=button[aria-label='Go to order history page']
 ${logout_button}    id=navbarLogoutButton
 ${navbar_login_button}    id=navbarLoginButton
 ${basket_container}    xpath=//h1[contains(text(), 'Your Basket')]
+${close_welcome_banner}    css=button[aria-label='Close Welcome Banner']

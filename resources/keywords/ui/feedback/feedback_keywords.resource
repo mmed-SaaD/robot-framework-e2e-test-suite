@@ -43,8 +43,9 @@ Assert Valid Feedback Submitted
     ${captcha_answer}=    Evaluate    ${captcha_question}
     Input Text    ${captcha_input}    ${captcha_answer}
     Wait Until Element Is Enabled    ${submit_feedback_button}
+    Wait Until Initial Snackbar Disappears
     Click Button    ${submit_feedback_button}
-    Page Should Contain    Thank you for your feedback.
+    Wait Until Keyword Succeeds    5s    500ms   Page Should Contain    Thank you for your feedback.
 
 
 Assert Empty Feedback Not Submitted

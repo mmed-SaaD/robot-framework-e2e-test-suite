@@ -130,10 +130,10 @@ NB: UI-CHECKOUT-001 and UI-CHECKOUT-002 are included in the same test case
 |---|---|---:|---|
 | UI-ADDR-001 | Open saved addresses page | Medium | regression, ui, address | => Checked
 | UI-ADDR-002 | Add valid address | High | regression, ui, address | => Checked
-| UI-ADDR-003 | Add address with missing required fields | High | regression, ui, address, negative | => Checked
-| UI-ADDR-004 | Edit address | Medium | regression, ui, address | => Checked
-| UI-ADDR-005 | Delete address | Medium | regression, ui, address | => Checked
-| UI-ADDR-006 | Address appears during checkout | High | regression, ui, address, checkout | => Checked
+| UI-ADDR-003 | Address appears during checkout | High | regression, ui, address, checkout | => Checked
+| UI-ADDR-004 | Add address with missing required fields | High | regression, ui, address, negative | => Checked
+| UI-ADDR-005 | Edit address | Medium | regression, ui, address | => Checked
+| UI-ADDR-006 | Delete address | Medium | regression, ui, address | => Checked
 
 ---
 

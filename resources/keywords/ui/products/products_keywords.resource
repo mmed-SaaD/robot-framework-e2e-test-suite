@@ -13,6 +13,7 @@ Pretest Build
     Open Browser To Main Page
     Valid Log In
     Assert Juice List IS Visible
+    Wait Until Initial Snackbar Disappears
 
 Search Product
     [Arguments]    ${search_value}
@@ -162,7 +163,6 @@ Assert Items Per Page Works
     ${selected_items_per_page}=    Get Text    ${item_per_page}
     Should Be Equal As Integers    ${displayed_products_count}    ${selected_items_per_page}
     Click Element    ${dismiss_cookies_button} 
-
     Click Element    ${items_per_page_selector}
     ${available_options}=    Get WebElements    ${items_per_page_options}
 

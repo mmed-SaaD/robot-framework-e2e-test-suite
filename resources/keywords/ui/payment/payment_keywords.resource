@@ -50,6 +50,7 @@ Assert Saved Payment Options Page Opens Successfully
 
 Assert New Payment Method Added
     Assert Saved Payment Options Page Opens Successfully
+    Wait Until Initial Snackbar Disappears
     &{credit_card_details}=    Create Dictionary
     ...        name=${NAME2}       card_number=${CARD_NUMBER2}    expiry_month=${EXPIRY_MONTH2}    expiry_year=${EXPIRY_YEAR2}
     Add New Credit Card    ${credit_card_details}  
@@ -82,9 +83,15 @@ Assert New Payment Method Selected During Checkout
     Assert Delivery Method Selected
     ${card_number_4_digits}=    Get Regexp Matches    ${CARD_NUMBER2}    \\d{4}$
     Page Should Contain    ${card_number_4_digits}[0]
+    Wait Until Page Contains    ${NAME2}
     Page Should Contain    ${NAME2}
     Page Should Contain    ${EXPIRY_MONTH2}/${EXPIRY_YEAR2}
 
+Payment Methods Count Should Be
+    [Arguments]    ${expected_count}
+    ${current_available_payment_methods}=    Get WebElements    ${saved_payment_methods_row}
+    ${current_available_payment_methods_count}=    Get Length    ${current_available_payment_methods}
+    Should Be Equal As Integers    ${current_available_payment_methods_count}    ${expected_count}
 
 Assert Payment Method Deletion
     Assert Saved Payment Options Page Opens Successfully
@@ -93,9 +100,7 @@ Assert Payment Method Deletion
     IF    ${available_payment_methods_count} != 0
         ${payment_method_deletion_button}=    Call Method    ${available_payment_methods}[0]    find_element    xpath    .//mat-cell[4]//button
         Click Button    ${payment_method_deletion_button}
-        ${current_available_payment_methods}=    Get WebElements    ${saved_payment_methods_row}
-        ${current_available_payment_methods_count}=    Get Length    ${current_available_payment_methods}
         ${expected_available_payment_methods_count}=    Evaluate    ${available_payment_methods_count} - 1
-        Should Be Equal As Integers    ${expected_available_payment_methods_count}    ${current_available_payment_methods_count}
+        Wait Until Keyword Succeeds    5s    500ms    Payment Methods Count Should Be    ${expected_available_payment_methods_count}
     END
     RETURN

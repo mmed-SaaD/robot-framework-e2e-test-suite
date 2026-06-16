@@ -6,9 +6,16 @@ Resource    ../../../variables/auth/auth_variables.resource
 Resource    ../smoke/smoke_keywords.resource
 
 *** Keywords ***
+Handle Welcome Banner
+    ${welcome_banner_displayed}=    Run Keyword And Return Status    Page Should Contain    Welcome to OWASP Juice Shop!
+    IF    ${welcome_banner_displayed}
+        Click Button    ${close_welcome_banner}
+    END
+
 Valid Log In
     [Arguments]    ${email}=${VALID_EMAIL}    ${password}=${VALID_PASSWORD}
     Login Page Opens
+    Handle Welcome Banner
     Input Text    ${email_input}    text=${email}
     Input Password    ${password_input}    password=${password}
     Click Button    ${login_button}
@@ -20,6 +27,7 @@ Valid Log In
 
 Invalid Email Log In Case
     Login Page Opens
+    Handle Welcome Banner
     Input Text    ${email_input}    text=${invalid_email}
     Input Password    ${password_input}    password=${VALID_PASSWORD}
     Click Button    ${login_button}
@@ -27,6 +35,7 @@ Invalid Email Log In Case
 
 Invalid Password Log In Case
     Login Page Opens
+    Handle Welcome Banner
     Input Text    ${email_input}    text=${VALID_EMAIL}
     Input Password    ${password_input}    password=${invalid_password}
     Click Button    ${login_button}
@@ -34,6 +43,7 @@ Invalid Password Log In Case
 
 Empty Credentials Log In Case
     Login Page Opens
+    Handle Welcome Banner
     Input Text    ${email_input}    text=
     Input Password    ${password_input}    password=
     Click Button    ${show_password_button}
@@ -42,6 +52,7 @@ Empty Credentials Log In Case
 
 Badly Formatted Email log IN Case
     Login Page Opens
+    Handle Welcome Banner
     Input Text    ${email_input}    text=${badly_formatted_email}
     Input Password    ${password_input}    password=${invalid_password}
     Click Button    ${login_button}
@@ -49,6 +60,7 @@ Badly Formatted Email log IN Case
 
 Logout Process Successfull
     Login Page Opens
+    Handle Welcome Banner
     Valid Log In
     Click Button    ${navbar_account}
     Click Button    ${logout_button}
@@ -58,6 +70,7 @@ Logout Process Successfull
 
 Assert Session Persists After Reload
     Login Page Opens
+    Handle Welcome Banner
     Valid Log In
     Assert Page Loaded
     Reload Page
@@ -71,5 +84,5 @@ Protected Pages Are Unaccessible After Log Out
     IF    not ${basket_list_is_visible}
         RETURN
     ELSE
-        Log To Console    Security Defect : Basket Page should not be visible after logout (Test will pass anyway !)
+        Fail    Security Defect : Basket Page should not be directly accessible after logout
     END    

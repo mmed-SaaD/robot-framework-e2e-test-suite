@@ -21,4 +21,4 @@ Run Performance Test
     Log    ${result.stdout}
     Log    ${result.stderr}
 
-    Should Be Equal As Integers    ${result.rc}    0
+    Should Be Equal As Integers    ${result.rc}    0        msg=Performance test failed while running ${script_name}.${\n}${\n}STDERR:${\n}${result.stderr}${\n}${\n}STDOUT:${\n}${result.stdout}

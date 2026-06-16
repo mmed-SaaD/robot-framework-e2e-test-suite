@@ -15,21 +15,26 @@ Add Valid Address
     Assert Valid Address Added
 
 #UI-ADDR-003
+Address Appears During Checkout 
+    [Tags]    regression    ui    address    checkout
+    Assert Added Addresses Appear During Checkout
+
+#UI-ADDR-004
 Add Address With Missing Required Fields
     [Tags]    regression    ui    address    negative
     Assert Invalid Address Handled - Missing Required Fields
 
-#UI-ADDR-004
+#UI-ADDR-005
 Edit Address
     [Tags]    regression    ui    address
     Assert Address Updated Successfully
 
-#UI-ADDR-005 
+#UI-ADDR-006 
 Delete Address
     [Tags]    regression    ui    address
     Assert Address Deletion
 
-#UI-ADDR-006
-Address Appears During Checkout 
-    [Tags]    regression    ui    address    checkout
-    Assert Added Addresses Appear During Checkout
+#UI-ADDR-002 This Test case is repeated as it is part of an e2e test suite
+Add Valid Address For e2e suite
+    [Tags]    regression    ui    address   e2e_suite
+    Assert Valid Address Added

@@ -81,6 +81,7 @@ Update Existing Address
     END
 
     Wait Until Element Is Enabled    ${submit_button}
+    Wait Until Initial Snackbar Disappears
     Click Button    ${submit_button}
 
 Assert Saved Addresses Page Opens
@@ -96,6 +97,7 @@ Assert Valid Address Added
     ${address_infos_list}=    Create Dictionary
     ...    country=${COUNTRY2}    name=${name}    mobile_number=${MOBILE_NUMBER2}    
     ...    zip=${ZIP2}    address=${ADDRESS2}    city=${CITY2}    state=${STATE2}
+    Wait Until Initial Snackbar Disappears
     Assert Saved Addresses Page Opens
     Click Button    ${add_new_address_button}
     Create New Address    ${address_infos_list}
@@ -141,7 +143,7 @@ Assert Address Deletion
         ${address_deletion_button}=    Call Method    ${available_addresses}[0]    find_element    xpath    .//mat-cell[5]//button
         Click Button    ${address_deletion_button}
         Wait Until Element Is Visible    ${address_removed_message_container}
-        Page Should Contain    Your address has been removed.
+        Wait Until Keyword Succeeds    5s    500ms    Page Should Contain    Your address has been removed.
         ${current_available_addresses}=    Get WebElements    ${saved_address_row}
         ${current_available_addresses_count}=    Get Length    ${current_available_addresses}
         ${expected_available_addresses_count}=    Evaluate    ${available_addresses_count} - 1

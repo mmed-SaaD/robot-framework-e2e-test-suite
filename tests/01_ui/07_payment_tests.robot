@@ -34,3 +34,8 @@ Select Payment During Checkout
 Delete Saved Payment Method
     [Tags]    regression    ui    payment
     Assert Payment Method Deletion
+
+#UI-PAY-002    This Test case is repeated as it is part of an e2e test suite
+Add New Payment Method For e2e Suite
+    [Tags]    regression    ui    payment    e2e_suite
+    Assert New Payment Method Added

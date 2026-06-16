@@ -18,9 +18,11 @@ Pretest Build
 
 Assert Checkout Process Starts
     Click Button    ${show_basket_button}
+    Wait Until Element Is Visible    ${basket_row_element}
     ${basket_items}=    Get WebElements    ${basket_row_element}
     ${basket_items_count}=    Get Length    ${basket_items}
     ${proceed_to_checkout_button_status}=    Run Keyword And Return Status    Element Should Be Disabled    ${basket_checkout_button}
+    Wait Until Initial Snackbar Disappears
     IF    ${basket_items_count} > 0 and not ${proceed_to_checkout_button_status}
         Click Button    ${basket_checkout_button}
         Wait Until Element Is Visible    ${add_new_address_button} 
@@ -28,7 +30,6 @@ Assert Checkout Process Starts
     ELSE IF    ${proceed_to_checkout_button_status}
         RETURN     ${False}
     END
-    RETURN
 
 Assert Address Added During Checkout
     ${checkout_process_started}=     Assert Checkout Process Starts
@@ -52,6 +53,7 @@ Assert Address Added During Checkout
 Assert Existing Address Use During Checkout
     ${checkout_process_started}=     Assert Checkout Process Starts
     IF    ${checkout_process_started}
+        Wait Until Element Is Visible    ${addresses_list_row_element}
         ${list_of_address}=    Get WebElements    ${addresses_list_row_element}
         ${address_selection_button}=    Call Method    ${list_of_address}[0]    find_element    xpath    .//mat-radio-button
         Click Element    ${address_selection_button}
@@ -60,7 +62,7 @@ Assert Existing Address Use During Checkout
 
 Assert Delivery Method Selected
     Assert Existing Address Use During Checkout
-    Wait Until Element Is Visible    ${continue_to_delivery_button}  
+    Wait Until Keyword Succeeds    5s    500ms    Element Should Be Visible    ${continue_to_delivery_button}  
     Click Button    ${continue_to_delivery_button}
     Wait Until Element Is Visible    ${methods_table}
     ${delivery_methods}=    Get WebElements    ${delivery_method_row}
@@ -103,25 +105,25 @@ Assert Payment Method Selected
     RETURN    ${delivery_cost}
 
 Assert Order Summary Integrity
-    ${card_number_4_digits}=    Get Regexp Matches    ${CARD_NUMBER}    \\d{4}
+    ${card_number_4_digits}=    Get Regexp Matches    ${CARD_NUMBER2}    \\d{4}
     ${basket_total}=    basket_keywords.Assert Checkout Total Integrity
     ${delivery_cost}=     Assert Payment Method Selected
     Location Should Contain    order-summary
-    Page Should Contain    ${NAME}
-    Page Should Contain    ${ADDRESS}
-    Page Should Contain    ${card_number_4_digits}[0]
-    Page Should Contain    ${delivery_cost}
+    Wait Until Page Contains    ${NAME2}
+    Wait Until Page Contains    ${ADDRESS2}
+    Wait Until Page Contains    ${card_number_4_digits}[0]
+    Wait Until Page Contains    ${delivery_cost}
     ${order_total}=    Evaluate    ${basket_total} + ${delivery_cost}
-    Page Should Contain    ${order_total}
+    Wait Until Page Contains    ${order_total}
     RETURN    ${order_total}
     
 Assert Order Placed Successfully
     ${order_total}=    Assert Order Summary Integrity
     Wait Until Element Is Visible    ${checkout_button}
     Click Button    ${checkout_button}
-    Page Should Contain    Thank you for your purchase!
-    Page Should Contain    ${ADDRESS}
-    Page Should Contain    ${order_total}
+    Wait Until Page Contains   Thank you for your purchase!
+    Wait Until Page Contains    ${ADDRESS2}
+    Wait Until Page Contains    ${order_total}
 
 Assert Order Confirmation Is Displayed
     Assert Order Placed Successfully
