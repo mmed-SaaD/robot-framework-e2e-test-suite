@@ -14,42 +14,30 @@ Wait Until Initial Snackbar Disappears
     END
 
 Close Welcome Banner
-    ${welcome_banner}=    Run Keyword And Return Status
-    ...    Wait Until Element Is Visible    ${close_welcome_banner}    5s
+    ${welcome_banner}=    Run Keyword And Return Status    Page Should Contain    Welcome to OWASP Juice Shop!
     IF    ${welcome_banner}
-        Wait Until Element Is Enabled    ${close_welcome_banner}    5s
         Click Button    ${close_welcome_banner}
-        Wait Until Element Is Not Visible    ${close_welcome_banner}    5s
+        Click Element    ${search_icon}
+        Wait Until Element Is Visible    ${search_input}
     END
 
 Open Browser To Main Page
-    ${headless}=    Set Variable    %{HEADLESS=true}
-
-    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    Call Method    ${options}    add_argument    --headless
-    Call Method    ${options}    add_argument    --no-sandbox
-    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].EdgeOptions()    sys
+    Call Method    ${options}    add_argument    --start-maximized
     Call Method    ${options}    add_argument    --disable-gpu
-    Call Method    ${options}    add_argument    --window-size\=1920,1080
-    Call Method    ${options}    add_argument    --remote-debugging-port\=9222
-    Call Method    ${options}    add_argument    --disable-extensions
-    Call Method    ${options}    add_argument    --disable-background-networking
-    Call Method    ${options}    add_argument    --user-data-dir\=/tmp/chrome-user-data
 
-    Create WebDriver    Chrome    options=${options}
+    Create WebDriver    Edge    options=${options}
     Go To    ${BASE_URL}
+    
+    Wait Until Initial Snackbar Disappears
+    Wait Until Page Contains    OWASP Juice Shop    10s
+    Close Welcome Banner
+    Close Cookies Message
 
-    Run Keyword And Ignore Error    Close Welcome Banner
-    Run Keyword And Ignore Error    Close Cookies Message
-
-    Wait Until Page Contains    OWASP Juice Shop    20s
-
-    Wait Until Keyword Succeeds    30s    1s    Page Should Contain Element    ${product_card}
-
-    Set Screenshot Directory    results
+    Set Screenshot Directory    artifacts/screenshots
 
 Close Browser Session
-    Run Keyword And Ignore Error    Close Browser
+    Close Browser
 
 Close Cookies Message
     ${cookies_messgae_is_visible}=    Run Keyword And Return Status    Element Should Be Visible   ${dismiss_cookies_button}
