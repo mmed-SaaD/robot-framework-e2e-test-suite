@@ -20,8 +20,10 @@ Close Welcome Banner
     END
 
 Open Browser To Main Page
+    Log To Console    Before Setting headless variable
     ${headless}=    Set Variable    %{HEADLESS=false}
-
+    
+    Log To Console    Before options and call method
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].EdgeOptions()    sys
     Call Method    ${options}    add_argument    --disable-gpu
     Call Method    ${options}    add_argument    --no-sandbox
@@ -33,13 +35,17 @@ Open Browser To Main Page
     ELSE
         Call Method    ${options}    add_argument    --start-maximized
     END
-
+    Log To Console    Before creating webdriver
     Create WebDriver    Edge    options=${options}
     Go To    ${BASE_URL}
 
+    Log To Console    Waiting snackbar disappearance
     Wait Until Initial Snackbar Disappears
+    Log To Console    Waiting For owasp juice shop to appear
     Wait Until Page Contains    OWASP Juice Shop    10s
+    Log To Console    before closing welcome banner
     Close Welcome Banner
+    Log To Console    befroe close cookies message
     Close Cookies Message
 
     Set Screenshot Directory    artifacts/screenshots
