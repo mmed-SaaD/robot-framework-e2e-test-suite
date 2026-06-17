@@ -45,15 +45,15 @@ jobs:
       - name: Install ChromeDriver
         uses: nanasess/setup-chromedriver@v2
 
-      - name: Wait for OWASP Juice Shop
+      - name: Wait for Juice Shop
         run: |
-          for i in {1..30}; do
+          for i in {1..60}; do
             if curl -s http://127.0.0.1:3000 > /dev/null; then
-              echo "Juice Shop is ready"
+              echo "Juice Shop is up"
               exit 0
             fi
             echo "Waiting for Juice Shop..."
-            sleep 5
+            sleep 2
           done
           exit 1
 
