@@ -76,18 +76,12 @@ jobs:
         run: |
           mkdir -p results reports/allure/allure-results reports/allure/allure-report
           robot \
+            --variable DB_PATH:${{ github.workspace }}/juice-shop-db/juiceshop.sqlite \
             --listener allure_robotframework:reports/allure/allure-results \
             --outputdir results \
             --exclude performance \
             --exclude security \
             tests/03_db
-
-      - name: Debug DB
-        run: |
-          echo "DB_PATH=$DB_PATH"
-          test -f "$DB_PATH" && echo "DB exists" || echo "DB missing"
-        env:
-          DB_PATH: ${{ github.workspace }}/juice-shop-db/juiceshop.sqlite
 
       - name: Generate Allure report
         run: |
