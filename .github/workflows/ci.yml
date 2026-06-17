@@ -64,7 +64,7 @@ jobs:
           LOGIN_URL: "http://127.0.0.1:3000/#/login"
           VALID_EMAIL: ${{ secrets.VALID_EMAIL }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
-          BROWSER: chrome
+          BROWSER: edge
           HEADLESS: true
         run: |
           mkdir -p results
