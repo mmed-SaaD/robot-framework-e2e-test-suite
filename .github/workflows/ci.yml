@@ -92,7 +92,7 @@ jobs:
           name: robot-framework-results
           path: |
             results/
-            allure-results/
+            reports/allure/allure-results/
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
@@ -100,7 +100,7 @@ jobs:
       - name: Upload Allure report to Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: allure-report
+          path: reports/allure/allure-report
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
