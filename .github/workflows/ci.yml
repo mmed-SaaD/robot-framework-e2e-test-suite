@@ -42,8 +42,13 @@ jobs:
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Install ChromeDriver
-        uses: nanasess/setup-chromedriver@v2
+      - name: Debug browser
+        run: |
+          google-chrome --version || true
+          chromium-browser --version || true
+          which google-chrome || true
+          which chromedriver || true
+          chromedriver --version || true
 
       - name: Wait for Juice Shop
         run: |

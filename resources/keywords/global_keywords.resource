@@ -26,14 +26,15 @@ Open Browser To Main Page
     ${headless}=    Set Variable    %{HEADLESS=true}
 
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    Call Method    ${options}    add_argument    --disable-gpu
+    Call Method    ${options}    add_argument    --headless=new
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --disable-gpu
     Call Method    ${options}    add_argument    --window-size\=1920,1080
-
-    IF    '${headless}' == 'true'
-        Call Method    ${options}    add_argument    --headless\=new
-    END
+    Call Method    ${options}    add_argument    --remote-debugging-port\=9222
+    Call Method    ${options}    add_argument    --disable-extensions
+    Call Method    ${options}    add_argument    --disable-background-networking
+    Call Method    ${options}    add_argument    --user-data-dir\=/tmp/chrome-user-data
 
     Create WebDriver    Chrome    options=${options}
     Go To    ${BASE_URL}
