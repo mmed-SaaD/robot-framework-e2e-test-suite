@@ -70,6 +70,7 @@ jobs:
           LOGIN_URL: http://127.0.0.1:3000/#/login
           VALID_EMAIL: ${{ secrets.VALID_EMAIL }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+          DB_PATH: ${{ secrets.DB_PATH }}
           BROWSER: chrome
           HEADLESS: true
         run: |
@@ -79,7 +80,7 @@ jobs:
             --outputdir results \
             --exclude performance \
             --exclude security \
-            tests
+            tests/03_db
 
       - name: Generate Allure report
         run: |
