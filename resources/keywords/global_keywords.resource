@@ -23,25 +23,19 @@ Close Welcome Banner
     END
 
 Open Browser To Main Page
-    ${headless}=    Set Variable    %{HEADLESS=false}
+    ${headless}=    Set Variable    %{HEADLESS=true}
 
-    ${options}=    Evaluate    sys.modules['selenium.webdriver'].EdgeOptions()    sys
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
     Call Method    ${options}    add_argument    --disable-gpu
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
     Call Method    ${options}    add_argument    --window-size\=1920,1080
-    Call Method    ${options}    add_argument    --remote-debugging-port\=9222
-    Call Method    ${options}    add_argument    --disable-extensions
-    Call Method    ${options}    add_argument    --disable-background-networking
-    Call Method    ${options}    add_argument    --disable-software-rasterizer
 
     IF    '${headless}' == 'true'
         Call Method    ${options}    add_argument    --headless\=new
-    ELSE
-        Call Method    ${options}    add_argument    --start-maximized
     END
 
-    Create WebDriver    Edge    options=${options}
+    Create WebDriver    Chrome    options=${options}
     Go To    ${BASE_URL}
 
     Run Keyword And Ignore Error    Close Welcome Banner
