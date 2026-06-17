@@ -37,13 +37,38 @@ Assert Product Records Exist
 
 Assert Product Data Modification
     ${params}=    Create List    7
-    ${original_product_data}=    Query    SELECT id, name, description, price FROM Products WHERE id = ?    parameters=${params}
-    Insert Into List    ${params}    0    value=The Dark Knight Rises Suit
-    Execute Sql String    UPDATE Products SET name = ? WHERE id = ?    parameters=${params}
+
+    ${original_product_data}=    Query
+    ...    SELECT id, name, description, price FROM Products WHERE id = ?
+    ...    parameters=${params}
+
+    ${timestamp}=    Get Time    epoch
+    ${new_product_name}=    Set Variable    The Dark Knight Rises Suit ${timestamp}
+
+    Insert Into List    ${params}    0    value=${new_product_name}
+
+    Execute Sql String
+    ...    UPDATE Products SET name = ? WHERE id = ?
+    ...    parameters=${params}
+
     Remove From List    ${params}    0
-    ${new_product_data}=    Query    SELECT id, name, description, price FROM Products WHERE id = ?    parameters=${params}
-    Should Not Be Equal As Strings    ${original_product_data}[0][1]    ${new_product_data}[0][1]
-    Should Be Equal As Integers    ${original_product_data}[0][0]    ${new_product_data}[0][0]
+
+    ${new_product_data}=    Query
+    ...    SELECT id, name, description, price FROM Products WHERE id = ?
+    ...    parameters=${params}
+
+    Should Not Be Equal As Strings
+    ...    ${original_product_data}[0][1]
+    ...    ${new_product_data}[0][1]
+
+    Should Be Equal As Strings
+    ...    ${new_product_data}[0][1]
+    ...    ${new_product_name}
+
+    Should Be Equal As Integers
+    ...    ${original_product_data}[0][0]
+    ...    ${new_product_data}[0][0]
+
 
 Assert Product Is Added To Basket
     #We Will use the userId 23 and the basket id 6, plus we will be adding the product with the id 17
