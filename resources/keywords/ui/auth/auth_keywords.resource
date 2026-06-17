@@ -17,6 +17,7 @@ Valid Log In
     Login Page Opens
     Handle Welcome Banner
     Wait Until Initial Snackbar Disappears
+    Close Cookies Message
     Input Text    ${email_input}    text=${email}
     Input Password    ${password_input}    password=${password}
     Click Button    ${login_button}
