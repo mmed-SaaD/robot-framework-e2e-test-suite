@@ -36,18 +36,18 @@ Assert Address Added During Checkout
     IF    ${checkout_process_started}
         Click Button    ${add_new_address_button}
         Wait Until Element Is Visible    ${country_input_element}
-        Input Text    ${country_input_element}    ${COUNTRY}
-        Input Text    ${name_input_element}    ${NAME}
-        Input Text    ${mobile_number_input_element}    ${MOBILE_NUMBER}
-        Input Text    ${zip_input_element}    ${ZIP}
-        Input Text    ${address_input_element}    ${ADDRESS}
-        Input Text    ${city_input_element}    ${CITY}
-        Input Text    ${state_input_element}    ${STATE}
+        Input Text    ${country_input_element}    ${COUNTRY2}
+        Input Text    ${name_input_element}    ${NAME2}
+        Input Text    ${mobile_number_input_element}    ${MOBILE_NUMBER2}
+        Input Text    ${zip_input_element}    ${ZIP2}
+        Input Text    ${address_input_element}    ${ADDRESS2}
+        Input Text    ${city_input_element}    ${CITY2}
+        Input Text    ${state_input_element}    ${STATE2}
         Wait Until Element Is Enabled    ${submit_button}
         Click Button    ${submit_button}
         Wait Until Element Is Visible    ${add_new_address_button}
-        Page Should Contain    ${COUNTRY}
-        Page Should Contain    ${ADDRESS} 
+        Page Should Contain    ${COUNTRY2}
+        Page Should Contain    ${ADDRESS2} 
     END
 
 Assert Existing Address Use During Checkout
@@ -79,7 +79,7 @@ Assert Payment Method Selected
     Wait Until Element Is Visible    ${payment_methods_page_header}
     ${payment_methods_exist}=    Run Keyword And Return Status        Wait Until Element Is Visible   ${methods_table}
     IF    not ${payment_methods_exist}
-            ${credit_card_details}=    Create List    ${NAME}       ${CARD_NUMBER}    ${EXPIRY_MONTH}    ${EXPIRY_YEAR}
+            ${credit_card_details}=    Create List    ${NAME2}       ${CARD_NUMBER2}    ${EXPIRY_MONTH2}    ${EXPIRY_YEAR2}
             Element Should Be Disabled    ${submit_button}
             Click Element    ${add_credit_card_container}
             ${credit_card_details_inputs}=    Get WebElements    xpath=${credit_card_info_container}
@@ -96,6 +96,7 @@ Assert Payment Method Selected
             Wait Until Element Is Enabled    ${submit_button}    
             Click Button    ${submit_button}
     END
+    Wait Until Element Is Visible    ${methods_table}
     ${payment_methods_container}=    Get WebElement    ${methods_table}
     ${payment_method_selection}=    Call Method    ${payment_methods_container}    find_elements    xpath    .//mat-row//mat-cell[1]//mat-radio-button
     ${payment_options_count}=    Get Length    ${payment_method_selection}

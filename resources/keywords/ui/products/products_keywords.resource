@@ -108,7 +108,6 @@ Assert Product Pagination Is Functional
     Should Be Equal As Integers    ${matches}[1]    ${selected_items_per_page}
 
     Should Be Equal As Integers    ${displayed_products_count}    ${selected_items_per_page}  
-    Click Element    ${dismiss_cookies_button} 
     
     Click Button    ${next_page_button}
     ${range_number_a}=    Evaluate    ${page} + ${selected_items_per_page}
@@ -162,7 +161,6 @@ Assert Items Per Page Works
     ${displayed_products_count}=    Get Element Count    ${product_card}
     ${selected_items_per_page}=    Get Text    ${item_per_page}
     Should Be Equal As Integers    ${displayed_products_count}    ${selected_items_per_page}
-    Click Element    ${dismiss_cookies_button} 
     Click Element    ${items_per_page_selector}
     ${available_options}=    Get WebElements    ${items_per_page_options}
 

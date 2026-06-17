@@ -38,6 +38,7 @@ Assert Basket Is Empty
     
 
 Assert Item Added To Bakset
+    Assert Juice List IS Visible
     ${previous_basket_items_count}=    Get Text    ${basket_items_count}
     ${product_name}    ${product_price}    ${add_to_basket_button}=    Get Products Details By Index    0
     Click Button    ${add_to_basket_button}
@@ -58,6 +59,7 @@ Assert Item Added To Bakset
     RETURN    ${product_name}    ${product_price}
 
 Assert Multiple Items Added To Bakset
+    Assert Juice List IS Visible
     ${added_items} =    Set Variable    0
     ${products_added_to_basket}=    Create List
     ${current_basket_items_count}=    Get Text    ${basket_items_count}
@@ -187,7 +189,8 @@ Basket Items Count Should Be
 
 Assert Product Removed From Basket
     Assert Basket Opens
-
+    Wait Until Element Is Visible    ${basket_row_element}
+    
     ${basket_items}=    Get WebElements    ${basket_row_element}
     ${previous_basket_items_count}=    Get Length    ${basket_items}
     ${expected_basket_items_count}=    Evaluate    ${previous_basket_items_count} - 1
