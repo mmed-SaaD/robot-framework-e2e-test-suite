@@ -72,7 +72,7 @@ jobs:
           BROWSER: chrome
           HEADLESS: true
         run: |
-          mkdir -p results reports/allure/allure-results
+          mkdir -p results reports/allure/allure-results reports/allure/allure-report
           robot \
             --listener allure_robotframework:reports/allure/allure-results \
             --outputdir results \
