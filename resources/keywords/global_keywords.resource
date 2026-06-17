@@ -44,12 +44,6 @@ Open Browser To Main Page
 
     Wait Until Page Contains    OWASP Juice Shop    20s
 
-    ${tiles}=    Get Element Count    xpath=//mat-grid-tile
-    Log To Console    GRID TILES: ${tiles}
-
-    ${cards}=    Get Element Count    xpath=//mat-card[contains(@class,'ribbon-card')]
-    Log To Console    RIBBON CARDS: ${cards}
-
     Wait Until Keyword Succeeds    30s    1s    Page Should Contain Element    ${product_card}
 
     Set Screenshot Directory    results
