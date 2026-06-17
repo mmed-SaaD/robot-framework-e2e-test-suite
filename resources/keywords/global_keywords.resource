@@ -14,9 +14,12 @@ Wait Until Initial Snackbar Disappears
     END
 
 Close Welcome Banner
-    ${welcome_banner}=    Run Keyword And Return Status    Page Should Contain    Welcome to OWASP Juice Shop!
+    ${welcome_banner}=    Run Keyword And Return Status
+    ...    Wait Until Element Is Visible    ${close_welcome_banner}    5s
     IF    ${welcome_banner}
+        Wait Until Element Is Enabled    ${close_welcome_banner}    5s
         Click Button    ${close_welcome_banner}
+        Wait Until Element Is Not Visible    ${close_welcome_banner}    5s
     END
 
 Open Browser To Main Page
@@ -35,10 +38,11 @@ Open Browser To Main Page
     END
 
     Create WebDriver    Edge    options=${options}
+    Set Window Size    1920    1080
     Go To    ${BASE_URL}
 
     Wait Until Page Contains    OWASP Juice Shop    30s
-    Sleep    3s
+    Sleep    15s
 
     Run Keyword And Ignore Error    Close Welcome Banner
     Run Keyword And Ignore Error    Close Cookies Message
