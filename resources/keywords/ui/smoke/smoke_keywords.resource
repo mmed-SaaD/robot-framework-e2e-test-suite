@@ -24,8 +24,6 @@ Assert Page Loaded
     Handle Banner If Exists
 
 Assert Juice List IS Visible
-    Close Welcome Banner
-    Close Cookies Message
     Wait Until Page Contains Element    ${list_of_products}    15s
     ${count}=     Get Element Count    ${list_of_products}
     Should Be True    ${count} > 0

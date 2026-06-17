@@ -23,11 +23,18 @@ Close Welcome Banner
     END
 
 Open Browser To Main Page
+    ${headless}=    Set Variable    %{HEADLESS=false}
 
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].EdgeOptions()    sys
     Call Method    ${options}    add_argument    --disable-gpu
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
+
+    IF    '${headless}' == 'true'
+        Call Method    ${options}    add_argument    --headless
+    ELSE
+        Call Method    ${options}    add_argument    --start-maximized
+    END
 
     Create WebDriver    Edge    options=${options}
     Go To    ${BASE_URL}
