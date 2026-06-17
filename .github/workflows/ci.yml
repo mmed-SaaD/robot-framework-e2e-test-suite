@@ -73,7 +73,6 @@ jobs:
             --variable BASE_URL:http://127.0.0.1:3000 \
             --variable REGISTRATION_URL:"http://localhost:3000/#/register" \
             --variable LOGIN_URL:"http://127.0.0.1:3000/#/login" \
-            --variable HEADLESS:false \
             --exclude performance \
             --exclude security \
             tests/01_ui/02_products_tests.robot
