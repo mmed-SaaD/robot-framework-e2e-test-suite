@@ -54,6 +54,7 @@ jobs:
           for i in {1..90}; do
             if curl -s http://127.0.0.1:3000/rest/products/search?q=apple | grep -qi "apple"; then
               echo "Juice Shop API is ready"
+              sleep 5
               exit 0
             fi
             echo "Waiting for Juice Shop API..."
