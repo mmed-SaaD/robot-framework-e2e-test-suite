@@ -70,7 +70,7 @@ jobs:
           LOGIN_URL: http://127.0.0.1:3000/#/login
           VALID_EMAIL: ${{ secrets.VALID_EMAIL }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
-          DB_PATH: ${{ secrets.DB_PATH }}
+          DB_PATH: ${{ github.workspace }}/juice-shop-db/juiceshop.sqlite
           BROWSER: chrome
           HEADLESS: true
         run: |
