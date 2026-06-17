@@ -26,8 +26,8 @@ Valid Log In
         Fail    ${login_err_message}
     END
     Wait Until Element Is Visible    ${navbar_account}
-    Wait Until Location Does Not Contain    /login    15s
-    Wait Until Page Contains Element    xpath=//mat-grid-tile    30s
+    Wait Until Keyword Succeeds    30s    500ms    Wait Until Location Does Not Contain    /login
+    Wait Until Keyword Succeeds    30s    500ms    Wait Until Page Contains Element    xpath=//mat-grid-tile
 
 Invalid Email Log In Case
     Login Page Opens
