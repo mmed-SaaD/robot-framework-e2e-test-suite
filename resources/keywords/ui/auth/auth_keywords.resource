@@ -27,6 +27,8 @@ Valid Log In
     END
     Wait Until Element Is Visible    ${navbar_account}
     Wait Until Keyword Succeeds    30s    500ms    Wait Until Location Does Not Contain    /login
+    Wait Until Keyword Succeeds    45s    500ms    Wait Until Location Contains    /search
+
 
 Invalid Email Log In Case
     Login Page Opens
