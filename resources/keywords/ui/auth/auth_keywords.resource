@@ -16,6 +16,7 @@ Valid Log In
     [Arguments]    ${email}=${VALID_EMAIL}    ${password}=${VALID_PASSWORD}
     Login Page Opens
     Handle Welcome Banner
+    Wait Until Initial Snackbar Disappears
     Input Text    ${email_input}    text=${email}
     Input Password    ${password_input}    password=${password}
     Click Button    ${login_button}
