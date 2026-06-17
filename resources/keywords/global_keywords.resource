@@ -30,6 +30,10 @@ Open Browser To Main Page
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
     Call Method    ${options}    add_argument    --window-size\=1920,1080
+    Call Method    ${options}    add_argument    --remote-debugging-port\=9222
+    Call Method    ${options}    add_argument    --disable-extensions
+    Call Method    ${options}    add_argument    --disable-background-networking
+    Call Method    ${options}    add_argument    --disable-software-rasterizer
 
     IF    '${headless}' == 'true'
         Call Method    ${options}    add_argument    --headless\=new
@@ -49,7 +53,7 @@ Open Browser To Main Page
     Set Screenshot Directory    results
 
 Close Browser Session
-    Close Browser
+    Run Keyword And Ignore Error    Close Browser
 
 Close Cookies Message
     ${cookies_messgae_is_visible}=    Run Keyword And Return Status    Element Should Be Visible   ${dismiss_cookies_button}

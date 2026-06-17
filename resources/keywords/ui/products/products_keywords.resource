@@ -10,10 +10,19 @@ Resource    ../../global_keywords.resource
 
 *** Keywords ***
 Pretest Build
+    Log To Console    Opening browser...
     Open Browser To Main Page
+
+    Log To Console    Logging in...
     Valid Log In
-    Assert Products Are Visible
+
+    Log To Console    Waiting for products...
+    Wait Until Keyword Succeeds    30s    1s    Product Count Should Be    12
+
+    Log To Console    Waiting snackbar...
     Wait Until Initial Snackbar Disappears
+
+    Log To Console    Pretest finished.
 
 Search Product
     [Arguments]    ${search_value}
