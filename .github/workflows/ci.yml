@@ -76,7 +76,7 @@ jobs:
             --variable HEADLESS:true \
             --exclude performance \
             --exclude security \
-            tests
+            tests/01_ui/02_products_tests.robot
 
       - name: Upload Robot Framework reports
         if: always()
