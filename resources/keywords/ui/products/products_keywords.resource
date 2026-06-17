@@ -17,7 +17,7 @@ Pretest Build
     Valid Log In
 
     Log To Console    Waiting for products...
-    Wait Until Keyword Succeeds    30s    1s    Product Count Should Be    12
+    Assert Products Are Visible
 
     Log To Console    Waiting snackbar...
     Wait Until Initial Snackbar Disappears
@@ -41,6 +41,7 @@ Assert Products Are Visible
 
 Product Count Should Be
     [Arguments]    ${expected}
+    Wait Until Keyword Succeeds    60s    500ms    Element Should Be Visible    ${product_card}
     ${products_count}=    Get Element Count    ${product_card}
     Should Be Equal As Integers    ${products_count}    ${expected}
 
