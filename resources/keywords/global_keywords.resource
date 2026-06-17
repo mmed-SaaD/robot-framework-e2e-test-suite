@@ -41,13 +41,12 @@ Open Browser To Main Page
     Set Window Size    1920    1080
     Go To    ${BASE_URL}
 
-    Wait Until Page Contains    OWASP Juice Shop    30s
-    Sleep    15s
-
     Run Keyword And Ignore Error    Close Welcome Banner
     Run Keyword And Ignore Error    Close Cookies Message
 
-    Wait Until Page Contains Element    xpath=//mat-card    30s
+    Wait Until Page Contains    OWASP Juice Shop    15s
+
+    Wait Until Page Contains Element    xpath=//mat-card    15s
 
     Set Screenshot Directory    artifacts/screenshots
 
