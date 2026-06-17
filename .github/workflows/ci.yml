@@ -79,7 +79,7 @@ jobs:
             --outputdir results \
             --exclude performance \
             --exclude security \
-            tests/02_ui/02_products_tests.robot
+            tests/01_ui/02_products_tests.robot
 
       - name: Generate Allure report
         run: |
