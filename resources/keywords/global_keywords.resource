@@ -22,6 +22,7 @@ Close Welcome Banner
 Open Browser To Main Page
     Log To Console    Before Setting headless variable
     ${headless}=    Set Variable    %{HEADLESS=false}
+    Log To Console    HEADLESS=${headless}
     
     Log To Console    Before options and call method
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].EdgeOptions()    sys
@@ -36,7 +37,7 @@ Open Browser To Main Page
         Call Method    ${options}    add_argument    --start-maximized
     END
     Log To Console    Before creating webdriver
-    Create WebDriver    Edge    options=${options}
+    Open Browser    about:blank    Edge    options=${options}
     Go To    ${BASE_URL}
 
     Log To Console    Waiting snackbar disappearance
