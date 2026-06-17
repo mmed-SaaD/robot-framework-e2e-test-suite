@@ -12,7 +12,7 @@ Resource    ../../global_keywords.resource
 Pretest Build
     Open Browser To Main Page
     Valid Log In
-    Assert Juice List IS Visible
+    Assert Products Are Visible
     Wait Until Initial Snackbar Disappears
 
 Search Product
@@ -27,10 +27,13 @@ Search Product
     Press Keys    ${search_input}    ${search_value}
     Press Keys    ${search_input}    ENTER
 
-
 Assert Products Are Visible
-    ${products_count}=    Get Element Count    ${product_card}    
-    Should Be Equal As Integers   ${products_count}    12
+    Wait Until Keyword Succeeds    30s    1s    Product Count Should Be    12
+
+Product Count Should Be
+    [Arguments]    ${expected}
+    ${products_count}=    Get Element Count    ${product_card}
+    Should Be Equal As Integers    ${products_count}    ${expected}
 
 Assert Products Names Are Visible
     ${products_names}=    Get WebElements    ${product_name}

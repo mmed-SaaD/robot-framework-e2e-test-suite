@@ -29,9 +29,10 @@ Open Browser To Main Page
     Call Method    ${options}    add_argument    --disable-gpu
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --window-size=1920,1080
 
     IF    '${headless}' == 'true'
-        Call Method    ${options}    add_argument    --headless
+        Call Method    ${options}    add_argument    --headless=new
     ELSE
         Call Method    ${options}    add_argument    --start-maximized
     END
@@ -42,11 +43,10 @@ Open Browser To Main Page
     Run Keyword And Ignore Error    Close Welcome Banner
     Run Keyword And Ignore Error    Close Cookies Message
 
-    Wait Until Page Contains    OWASP Juice Shop    15s
+    Wait Until Page Contains    OWASP Juice Shop    20s
+    Wait Until Keyword Succeeds    30s    1s    Page Should Contain Element    ${product_card}
 
-    Wait Until Page Contains Element    xpath=//mat-card    15s
-
-    Set Screenshot Directory    artifacts/screenshots
+    Set Screenshot Directory    results
 
 Close Browser Session
     Close Browser
