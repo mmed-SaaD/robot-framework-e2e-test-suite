@@ -82,6 +82,13 @@ jobs:
             --exclude performance \
             --exclude security \
             --test "Registration With Valid Data" tests/01_ui/01_registration_tests.robot \
+          
+          robot \
+            --variable DB_PATH:${{ github.workspace }}/juice-shop-db/juiceshop.sqlite \
+            --listener allure_robotframework:reports/allure/allure-results \
+            --outputdir results \
+            --exclude performance \
+            --exclude security \
             tests/01_ui/02_products_tests.robot
 
       - name: Generate Allure report
