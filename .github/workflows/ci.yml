@@ -76,12 +76,13 @@ jobs:
         run: |
           mkdir -p results reports/allure/allure-results reports/allure/allure-report
           robot \
+            --test "Registration With Valid Data"
             --variable DB_PATH:${{ github.workspace }}/juice-shop-db/juiceshop.sqlite \
             --listener allure_robotframework:reports/allure/allure-results \
             --outputdir results \
             --exclude performance \
             --exclude security \
-            tests/01_ui/03_smoke_tests.robot
+            tests/01_ui/02_products_tests.robot
 
       - name: Generate Allure report
         run: |
