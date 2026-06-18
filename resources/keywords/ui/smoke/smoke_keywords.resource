@@ -4,6 +4,7 @@ Variables    ../../../../core/utils/env_loader.py
 Resource   ../../../variables/variables.resource
 Resource   ../../../variables/auth/auth_variables.resource
 Resource   ../../../locators/smoke/home_page.resource
+Resource    ../../../locators/products/products.resource
 Resource    ../../../keywords/global_keywords.resource
 Resource    ../auth/auth_keywords.resource
 
@@ -24,8 +25,8 @@ Assert Page Loaded
     Handle Banner If Exists
 
 Assert Juice List IS Visible
-    Wait Until Page Contains Element    ${list_of_products}    20s
-    ${count}=     Get Element Count    ${list_of_products}
+    Wait Until Page Contains Element    ${product_card}    20s
+    ${count}=     Get Element Count    ${product_card}
     Should Be True    ${count} > 0
 
 Assert Menu Opens
