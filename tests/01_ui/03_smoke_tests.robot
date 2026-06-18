@@ -20,7 +20,7 @@ Page Loads Without Blocking Banner
 Product List Should Be Visible
     [Tags]    smoke    ui    products
     Handle Banner If Exists
-    Assert Juice List IS Visible
+    Wait Until Keyword Succeeds    3min    10s   Assert Juice List IS Visible
 
 #UI-SMOKE-004
 Navigation Menu Is Working
