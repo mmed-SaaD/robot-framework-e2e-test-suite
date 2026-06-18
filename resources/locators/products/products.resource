@@ -1,5 +1,5 @@
 *** Variables ***
-${product_card}    xpath=//mat-card[contains(@class, 'ribbon-card')]
+${product_card}    css=mat-card.ribbon-card    xpath=//mat-card[contains(@class, 'ribbon-card')]
 ${product_name}    xpath=//div[contains(@class, 'item-name')]
 ${product_img}    xpath=//img[contains(@class, 'img-thumbnail')]
 ${product_price}    xpath=//div[contains(@class, 'item-price')]//span

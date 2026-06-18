@@ -25,8 +25,8 @@ Assert Page Loaded
     Handle Banner If Exists
 
 Assert Juice List IS Visible
-    Wait Until Page Contains Element    css=mat-card    20s
-    ${count}=     Get Element Count    css=mat-card
+    Wait Until Page Contains Element    ${product_card}    20s
+    ${count}=     Get Element Count    ${product_card}
     Should Be True    ${count} > 0
 
 Assert Menu Opens
