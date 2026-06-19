@@ -37,6 +37,7 @@ Search Product
     Press Keys    ${search_input}    ENTER
 
 Assert Products Are Visible
+    Capture Page Screenshot
     Wait Until Keyword Succeeds    90s    1s    Product Count Should Be    12
 
 Product Count Should Be
