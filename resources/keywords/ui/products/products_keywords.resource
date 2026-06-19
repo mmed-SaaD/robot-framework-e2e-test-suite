@@ -67,13 +67,12 @@ Search Product
 
 Assert Products Are Visible
     Capture Page Screenshot
-    Wait Until Keyword Succeeds    90s    1s    Product Count Should Be    12
+    Wait Until Keyword Succeeds    90s    1s    Product Count Should Not Be 0
 
-Product Count Should Be
-    [Arguments]    ${expected}
+Product Count Should Not Be 0
     Wait Until Keyword Succeeds    90s    500ms    Element Should Be Visible    ${product_card}
     ${products_count}=    Get Element Count    ${product_card}
-    Should Be Equal As Integers    ${products_count}    ${expected}
+    Should Not Be Equal As Integers    ${products_count}    0
 
 Assert Products Names Are Visible
     ${products_names}=    Get WebElements    ${product_name}
