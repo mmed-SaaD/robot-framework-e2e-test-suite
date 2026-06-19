@@ -3,6 +3,7 @@ Library    SeleniumLibrary
 Variables    ../../../../core/utils/env_loader.py
 Resource    ../../../variables/variables.resource
 Resource    ../../../variables/auth/auth_variables.resource
+Resource    ../../global_keywords.resource
 Resource    ../smoke/smoke_keywords.resource
 
 *** Keywords ***
@@ -15,7 +16,7 @@ Handle Welcome Banner
 Valid Log In
     [Arguments]    ${email}=${VALID_EMAIL}    ${password}=${VALID_PASSWORD}
     Login Page Opens
-    Handle Welcome Banner
+    Close Welcome Banner
     Wait Until Initial Snackbar Disappears
     Close Cookies Message
     Input Text    ${email_input}    text=${email}
