@@ -33,10 +33,13 @@ Open Browser To Main Page
     END
     Open Browser    about:blank    Edge    options=${options}
     Go To    http://127.0.0.1:3000
-
+    
+    Log To Console    Before Reload page snackbar ...
     Wait Until Initial Snackbar Disappears
     Wait Until Page Contains    OWASP Juice Shop    10s
+    Log To Console    Before Closing Banner ...
     Close Welcome Banner
+    Log To Console    Before Closing Cookies ...
     Close Cookies Message
 
     Set Screenshot Directory    artifacts/screenshots
