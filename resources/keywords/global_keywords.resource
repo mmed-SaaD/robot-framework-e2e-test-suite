@@ -32,7 +32,7 @@ Open Browser To Main Page
         Call Method    ${options}    add_argument    --start-maximized
     END
     Open Browser    about:blank    Edge    options=${options}
-    Go To    http://127.0.0.1:3000
+    Go To    ${BASE_URL}
     
     Log To Console    Before Reload page snackbar ...
     Wait Until Initial Snackbar Disappears
