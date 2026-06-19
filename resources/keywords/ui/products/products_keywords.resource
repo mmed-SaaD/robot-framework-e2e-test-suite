@@ -110,7 +110,8 @@ Assert Products Cards Open Details
     Wait Until Element Is Visible    ${product_card_details}
 
 Assert Products Search By Valid Name Is Functional
-    Click Element    ${search_icon}
+    Capture Page Screenshot    search_attempt.png
+    Wait Until Keyword Succeeds    30s    1s    Click Button   ${search_icon}
     Wait Until Element Is Visible    ${search_input}
     Input Text    ${search_input}    text=${searched_product_name}
     Press Keys    ${search_input}    ENTER
