@@ -5,6 +5,22 @@ Resource    ../../resources/locators/products/products.resource
 Resource    ../../resources/locators/navigation/navigation.resource
 
 *** Keywords ***
+Click Element Safely
+    [Arguments]    ${locator}
+
+    Wait Until Element Is Visible    ${locator}    30s
+    Wait Until Element Is Enabled    ${locator}    30s
+    Scroll Element Into View    ${locator}
+    Sleep    300ms
+
+    ${normal_click}=    Run Keyword And Return Status
+    ...    Click Element    ${locator}
+
+    IF    not ${normal_click}
+        ${element}=    Get WebElement    ${locator}
+        Execute Javascript    arguments[0].click();    ARGUMENTS    ${element}
+    END
+
 Wait Until Initial Snackbar Disappears
     ${snackbar_exists}=    Run Keyword And Return Status
     ...    Wait Until Element Is Visible    .mat-mdc-snack-bar-label.mdc-snackbar__label    2s
@@ -14,33 +30,37 @@ Wait Until Initial Snackbar Disappears
     END
 
 Close Welcome Banner
-    ${welcome_banner}=    Run Keyword And Return Status    Page Should Contain    Welcome to OWASP Juice Shop!
-    IF    ${welcome_banner}
-        Wait Until Keyword Succeeds    30s    1s  Click Button    ${close_welcome_banner}
+    ${visible}=    Run Keyword And Return Status
+    ...    Wait Until Element Is Visible    ${close_welcome_banner}    5s
+
+    IF    ${visible}
+        Click Element Safely    ${close_welcome_banner}
     END
 
 Open Browser To Main Page
     ${headless}=    Set Variable    %{HEADLESS=false}
-    
+
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].EdgeOptions()    sys
     Call Method    ${options}    add_argument    --disable-gpu
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --window-size=1920,1080
+
     IF    '${headless}' == 'true'
-        Call Method    ${options}    add_argument    --headless
+        Call Method    ${options}    add_argument    --headless=new
     ELSE
         Call Method    ${options}    add_argument    --start-maximized
     END
+
     Open Browser    about:blank    Edge    options=${options}
     Go To    ${BASE_URL}
-    
-    Log To Console    Before Reload page snackbar ...
+
+    Wait Until Page Contains    OWASP Juice Shop    30s
     Wait Until Initial Snackbar Disappears
-    Wait Until Page Contains    OWASP Juice Shop    10s
-    Log To Console    Before Closing Banner ...
+
     Close Welcome Banner
-    Log To Console    Before Closing Cookies ...
     Close Cookies Message
+    Wait Until Initial Snackbar Disappears
 
     Set Screenshot Directory    artifacts/screenshots
 
@@ -48,7 +68,9 @@ Close Browser Session
     Close Browser
 
 Close Cookies Message
-    ${cookies_messgae_is_visible}=    Run Keyword And Return Status    Element Should Be Visible   ${dismiss_cookies_button}
-    IF    ${cookies_messgae_is_visible}
-        Click Element    ${dismiss_cookies_button}
-    END     
+    ${visible}=    Run Keyword And Return Status
+    ...    Wait Until Element Is Visible    ${dismiss_cookies_button}    5s
+
+    IF    ${visible}
+        Click Element Safely    ${dismiss_cookies_button}
+    END
