@@ -53,7 +53,7 @@ Open Browser To Main Page
     END
 
     Open Browser    about:blank    Edge    options=${options}
-    Go To    ${BASE_URL}
+    Go To    http://127.0.0.1:3000
 
     Wait Until Page Contains    OWASP Juice Shop    30s
     Wait Until Initial Snackbar Disappears
