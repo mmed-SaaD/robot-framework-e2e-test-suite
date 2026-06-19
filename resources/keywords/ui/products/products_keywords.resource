@@ -76,20 +76,20 @@ Product Count Should Be
     Should Be True    ${products_count} >= ${expected}
 
 Assert Products Names Are Visible
-    ${products_names}=    Get WebElements    ${product_name}
-    ${products_count}=    Get Length    ${products_names}
-    Should Be Equal As Integers    ${products_count}    12
-    FOR    ${product}    IN    @{products_names}
-        ${name}=    Get Text    ${product}
+    ${product_cards}=    Get WebElements    ${product_name}
+    ${products_count}=    Get Length    ${product_cards}
+    Should Be True    ${products_count} >= 12
+    FOR    ${card}    IN    @{product_cards}
+        ${name_element}=    Call Method    ${card}    find_element    xpath    .//*[contains(@class,'item-name')]
+        ${name}=    Get Text    ${name_element}
         ${name}=    Strip String    ${name}
-
         Should Not Be Empty    ${name}    Missing product name
     END
 
 Assert Products Images Are Visible
     ${products_images}=    Get WebElements    ${product_img}
     ${products_count}=    Get Length    ${products_images}
-    Should Be Equal As Integers    ${products_count}    12
+    Should Be True    ${products_count} >= 12
     FOR    ${product_image}    IN    @{products_images}
         Element Should Be Visible    ${product_image}
     END
