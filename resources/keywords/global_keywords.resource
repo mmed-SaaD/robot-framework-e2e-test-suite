@@ -47,7 +47,7 @@ Open Browser To Main Page
     Call Method    ${options}    add_argument    --window-size\=1920,1080
 
     IF    '${headless}' == 'true'
-        Call Method    ${options}    add_argument    --headless=new
+        Call Method    ${options}    add_argument    --headless\=new
     ELSE
         Call Method    ${options}    add_argument    --start-maximized
     END
