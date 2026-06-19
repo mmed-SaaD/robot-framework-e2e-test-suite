@@ -16,7 +16,7 @@ Wait Until Initial Snackbar Disappears
 Close Welcome Banner
     ${welcome_banner}=    Run Keyword And Return Status    Page Should Contain    Welcome to OWASP Juice Shop!
     IF    ${welcome_banner}
-        Click Button    ${close_welcome_banner}
+        Wait Until Keyword Succeeds    30s    1s  Click Button    ${close_welcome_banner}
     END
 
 Open Browser To Main Page
