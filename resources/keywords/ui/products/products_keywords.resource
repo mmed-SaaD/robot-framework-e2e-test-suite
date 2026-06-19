@@ -16,6 +16,9 @@ Pretest Build
     Log To Console    Logging in...
     Valid Log In
 
+    Log To Console    Debugging CI layout...
+    Debug Products Layout
+
     Log To Console    Waiting for products...
     Assert Products Are Visible
 
@@ -23,6 +26,32 @@ Pretest Build
     Wait Until Initial Snackbar Disappears
 
     Log To Console    Pretest finished.
+
+Debug Products Layout
+    Capture Page Screenshot    before_products_check.png
+
+    ${url}=    Get Location
+    ${width}=    Execute Javascript    return window.innerWidth;
+    ${height}=   Execute Javascript    return window.innerHeight;
+
+    ${tiles}=    Get Element Count    xpath=//mat-grid-tile
+    ${cards}=    Get Element Count    xpath=//mat-card
+    ${buttons}=  Get Element Count    xpath=//button[contains(.,'Add to Basket')]
+
+    Log To Console    CURRENT URL: ${url}
+    Log To Console    WIDTH=${width}
+    Log To Console    HEIGHT=${height}
+    Log To Console    GRID TILES=${tiles}
+    Log To Console    MAT CARDS=${cards}
+    Log To Console    ADD BUTTONS=${buttons}
+
+    ${has_item_per_page}=    Run Keyword And Return Status
+    ...    Element Should Be Visible    ${item_per_page}
+
+    IF    ${has_item_per_page}
+        ${items}=    Get Text    ${item_per_page}
+        Log To Console    ITEMS PER PAGE=${items}
+    END
 
 Search Product
     [Arguments]    ${search_value}
