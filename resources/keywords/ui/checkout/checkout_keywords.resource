@@ -18,6 +18,7 @@ Pretest Build
 
 Assert Checkout Process Starts
     Click Button    ${show_basket_button}
+    Capture Page Screenshot    basket_row.png
     Wait Until Element Is Visible    ${basket_row_element}
     ${basket_items}=    Get WebElements    ${basket_row_element}
     ${basket_items_count}=    Get Length    ${basket_items}
