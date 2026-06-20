@@ -95,7 +95,7 @@ jobs:
             --outputdir results \
             --exclude performance \
             --exclude security \
-            --test "Address Appears During Checkout" tests/01_ui/06_address_management_tests.robot          
+            tests/01_ui/06_address_management_tests.robot          
 
       - name: Upload Screenshots
         if: always()
