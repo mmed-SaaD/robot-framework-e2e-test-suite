@@ -152,6 +152,7 @@ Assert Address Deletion
     RETURN
     
 Assert Added Addresses Appear During Checkout
+    Assert Multiple Items Added To Bakset
     ${checkout_process_status}=    checkout_keywords.Assert Checkout Process Starts
     IF    not ${checkout_process_status}
         RETURN
