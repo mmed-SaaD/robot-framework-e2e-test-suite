@@ -91,7 +91,7 @@ jobs:
             --listener allure_robotframework:reports/allure/allure-results \
             --outputdir results \
             tests/01_ui/ \
-            tests/0_api/ \
+            tests/02_api/ \
             tests/03_db/ \
 
       - name: Upload Screenshots
