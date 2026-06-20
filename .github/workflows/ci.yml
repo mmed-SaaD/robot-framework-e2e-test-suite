@@ -71,6 +71,12 @@ jobs:
           VALID_EMAIL: ${{ secrets.VALID_EMAIL }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
           DB_PATH: ${{ github.workspace }}/juice-shop-db/juiceshop.sqlite
+          ADDRESS: ${{ secrets.ADDRESS }}
+          COUNTRY2: ${{ secrets.COUNTRY2 }}
+          CITY2: ${{ secrets.CITY2 }}
+          ZIP2: ${{ secrets.ZIP2 }}
+          NAME2: ${{ secrets.NAME2 }}
+          MOBILE_NUMBER2: ${{ secrets.MOBILE_NUMBER2 }}
           BROWSER: chrome
           HEADLESS: true
         run: |
@@ -81,7 +87,17 @@ jobs:
             --outputdir results \
             --exclude performance \
             --exclude security \
-            tests/
+            --test "Registration With Valid Data" tests/01_ui/01_registration_tests.robot
+
+        run: |
+          mkdir -p results reports/allure/allure-results reports/allure/allure-report
+          robot \
+            --variable DB_PATH:${{ github.workspace }}/juice-shop-db/juiceshop.sqlite \
+            --listener allure_robotframework:reports/allure/allure-results \
+            --outputdir results \
+            --exclude performance \
+            --exclude security \
+            --test "Address Appears During Checkout" tests/01_ui/06_address_management_tests.robot          
 
       - name: Upload Screenshots
         if: always()
