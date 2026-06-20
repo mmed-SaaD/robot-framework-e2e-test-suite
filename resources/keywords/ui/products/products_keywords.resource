@@ -10,26 +10,13 @@ Resource    ../../global_keywords.resource
 
 *** Keywords ***
 Pretest Build
-    Log To Console    Opening browser...
     Open Browser To Main Page
-
-    Log To Console    Logging in...
     Valid Log In
-
-    Log To Console    Debugging CI layout...
     Debug Products Layout
-
-    Log To Console    Waiting for products...
     Assert Products Are Visible
-
-    Log To Console    Waiting snackbar...
     Wait Until Initial Snackbar Disappears
 
-    Log To Console    Pretest finished.
-
 Debug Products Layout
-    Capture Page Screenshot    before_products_check.png
-
     ${url}=    Get Location
     ${width}=    Execute Javascript    return window.innerWidth;
     ${height}=   Execute Javascript    return window.innerHeight;
@@ -38,19 +25,11 @@ Debug Products Layout
     ${cards}=    Get Element Count    xpath=//mat-card
     ${buttons}=  Get Element Count    xpath=//button[contains(.,'Add to Basket')]
 
-    Log To Console    CURRENT URL: ${url}
-    Log To Console    WIDTH=${width}
-    Log To Console    HEIGHT=${height}
-    Log To Console    GRID TILES=${tiles}
-    Log To Console    MAT CARDS=${cards}
-    Log To Console    ADD BUTTONS=${buttons}
-
     ${has_item_per_page}=    Run Keyword And Return Status
     ...    Element Should Be Visible    ${item_per_page}
 
     IF    ${has_item_per_page}
         ${items}=    Get Text    ${item_per_page}
-        Log To Console    ITEMS PER PAGE=${items}
     END
 
 Search Product
@@ -75,21 +54,22 @@ Product Count Should Be
     ${products_count}=    Get Element Count    ${product_card}
     Should Be True    ${products_count} >= ${expected}
 
+
 Assert Products Names Are Visible
-    ${product_cards}=    Get WebElements    ${product_name}
-    ${products_count}=    Get Length    ${product_cards}
-    Should Be True    ${products_count} >= 12
-    FOR    ${card}    IN    @{product_cards}
-        ${name_element}=    Call Method    ${card}    find_element    xpath    .//*[contains(@class,'item-name')]
-        ${name}=    Get Text    ${name_element}
+    ${products_names}=    Get WebElements    ${product_name}
+    ${products_count}=    Get Length    ${products_names}
+    Should Be Equal As Integers    ${products_count}    12
+    FOR    ${product}    IN    @{products_names}
+        ${name}=    Get Text    ${product}
         ${name}=    Strip String    ${name}
+
         Should Not Be Empty    ${name}    Missing product name
     END
 
 Assert Products Images Are Visible
     ${products_images}=    Get WebElements    ${product_img}
     ${products_count}=    Get Length    ${products_images}
-    Should Be True    ${products_count} >= 12
+    Should Be Equal As Integers    ${products_count}    12
     FOR    ${product_image}    IN    @{products_images}
         Element Should Be Visible    ${product_image}
     END
@@ -110,8 +90,7 @@ Assert Products Cards Open Details
     Wait Until Element Is Visible    ${product_card_details}
 
 Assert Products Search By Valid Name Is Functional
-    Capture Page Screenshot    search_attempt.png
-    Wait Until Keyword Succeeds    30s    1s    Click Element   ${search_icon}
+    Click Element    ${search_icon}
     Wait Until Element Is Visible    ${search_input}
     Input Text    ${search_input}    text=${searched_product_name}
     Press Keys    ${search_input}    ENTER
