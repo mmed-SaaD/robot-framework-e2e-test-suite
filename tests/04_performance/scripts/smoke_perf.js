@@ -16,19 +16,9 @@ export const options = {
     },
 };
 
-function debugResponse(name, res) {
-  if (res.status < 200 || res.status >= 400) {
-    console.log(`${name} FAILED`);
-    console.log(`URL: ${res.url}`);
-    console.log(`Status: ${res.status}`);
-    console.log(res.body.substring(0, 500));
-  }
-}
-
 export default function(){
     //PERF-SMOKE-001
     let searchResp = http.get(`${BASE_URL}/rest/products/search?q=apple`, {tags : {type:'search'}});
-    debugResponse('Search products', res);
     check(searchResp , {
         'product search status is 200': (r) => r.status === 200,
         'product search response is not empty' : (r) => r.body.length != 0,

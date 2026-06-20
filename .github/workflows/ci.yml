@@ -31,6 +31,20 @@ jobs:
           INFLUXDB_DB: k6
           INFLUXDB_HTTP_AUTH_ENABLED: "false"
 
+      zap:
+        image: zaproxy/zap-stable@sha256:dd88833c37ce391ec13083f86bb8215c1543688b21859ab0f3eff9172abe764f
+        ports:
+          - 8090:8090
+        options: >-
+          --entrypoint zap.sh
+        command: >-
+          -daemon
+          -host 0.0.0.0
+          -port 8090
+          -config api.disablekey=true
+          -config api.addrs.addr.name=.*
+          -config api.addrs.addr.regex=true
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -112,7 +126,7 @@ jobs:
             --variable DB_PATH:${{ github.workspace }}/juice-shop-db/juiceshop.sqlite \
             --listener allure_robotframework:reports/allure/allure-results \
             --outputdir results \
-            tests/04_performance/ \
+            tests/05_security/ \
 
       - name: Upload Screenshots
         if: always()
