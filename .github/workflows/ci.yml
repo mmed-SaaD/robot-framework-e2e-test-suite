@@ -99,7 +99,7 @@ jobs:
             --outputdir results \
             --exclude performance \
             --exclude security \
-            tests/01_ui/08_checkout_tests.robot
+            tests/01_ui/09_feedback_tests.robot
 
       - name: Upload Screenshots
         if: always()
