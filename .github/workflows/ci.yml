@@ -76,6 +76,9 @@ jobs:
           CITY2: ${{ secrets.CITY2 }}
           ZIP2: ${{ secrets.ZIP2 }}
           NAME2: ${{ secrets.NAME2 }}
+          CARD_NUMBER2: ${{ secrets.CARD_NUMBER2 }}
+          EXPIRY_MONTH2: ${{ secrets.EXPIRY_MONTH2 }}
+          EXPIRY_YEAR2: ${{ secrets.EXPIRY_YEAR2 }}
           MOBILE_NUMBER2: ${{ secrets.MOBILE_NUMBER2 }}
           BROWSER: chrome
           HEADLESS: true
