@@ -16,6 +16,21 @@ Pretest Build
     Valid Log In
     Close Cookies Message
 
+Should Contain Price Approximately
+    [Arguments]    ${text}    ${expected}
+
+    @{numbers}=    Get Regexp Matches    ${text}    \\d+(?:\\.\\d+)?
+    FOR    ${number}    IN    @{numbers}
+        ${actual}=    Convert To Number    ${number}
+        ${is_match}=    Run Keyword And Return Status
+        ...    Should Be Equal As Numbers    ${actual}    ${expected}    precision=2
+        IF    ${is_match}
+            RETURN
+        END
+    END
+
+    Fail    Expected price ${expected} was not found approximately in page text.
+
 Assert Checkout Process Starts
     Click Button    ${show_basket_button}
     Capture Page Screenshot    basket_row.png
@@ -110,22 +125,33 @@ Assert Order Summary Integrity
     ${card_number_4_digits}=    Get Regexp Matches    ${CARD_NUMBER2}    \\d{4}
     ${basket_total}=    basket_keywords.Assert Checkout Total Integrity
     ${delivery_cost}=     Assert Payment Method Selected
+
     Location Should Contain    order-summary
     Wait Until Page Contains    ${NAME2}
     Wait Until Page Contains    ${ADDRESS2}
     Wait Until Page Contains    ${card_number_4_digits}[0]
     Wait Until Page Contains    ${delivery_cost}
-    ${order_total}=    Evaluate    ${basket_total} + ${delivery_cost}
-    Wait Until Page Contains    ${order_total}
-    RETURN    ${order_total}
+
+    ${expected_order_total}=    Evaluate    ${basket_total} + ${delivery_cost}
+
+    ${page_text}=    Get Text    xpath=//body
+    ${expected_order_total}=    Convert To Number    ${expected_order_total}
+
+    Should Contain Price Approximately    ${page_text}    ${expected_order_total}
+
+    RETURN    ${expected_order_total}
     
 Assert Order Placed Successfully
     ${order_total}=    Assert Order Summary Integrity
+
     Wait Until Element Is Visible    ${checkout_button}
     Click Button    ${checkout_button}
-    Wait Until Page Contains   Thank you for your purchase!
+
+    Wait Until Page Contains    Thank you for your purchase!
     Wait Until Page Contains    ${ADDRESS2}
-    Wait Until Page Contains    ${order_total}
+
+    ${page_text}=    Get Text    xpath=//body
+    Should Contain Price Approximately    ${page_text}    ${order_total}
 
 Assert Order Confirmation Is Displayed
     Assert Order Placed Successfully

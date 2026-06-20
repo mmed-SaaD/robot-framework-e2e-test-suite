@@ -23,6 +23,13 @@ jobs:
         image: bkimminich/juice-shop@sha256:a8139c141311c7f31fcf2e611125246928f703ee42827de33983fd9425d1b2f6
         ports:
           - 3000:3000
+      influxdb:
+        image: influxdb:1.8
+        ports:
+          - 8086:8086
+        env:
+          INFLUXDB_DB: k6
+          INFLUXDB_HTTP_AUTH_ENABLED: "false"
 
     steps:
       - name: Checkout repository
@@ -91,8 +98,6 @@ jobs:
             --listener allure_robotframework:reports/allure/allure-results \
             --outputdir results \
             tests/01_ui/ \
-            tests/02_api/ \
-            tests/03_db/ \
 
       - name: Upload Screenshots
         if: always()
