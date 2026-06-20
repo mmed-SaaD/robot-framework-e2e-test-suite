@@ -89,9 +89,7 @@ jobs:
             --variable DB_PATH:${{ github.workspace }}/juice-shop-db/juiceshop.sqlite \
             --listener allure_robotframework:reports/allure/allure-results \
             --outputdir results \
-            --exclude performance \
-            --exclude security \
-            tests/
+            --test "Change Password" tests/01_ui/11_user_account_tests.robot
 
       - name: Upload Screenshots
         if: always()

@@ -33,6 +33,7 @@ Assert Password Is Changed
     Input Text    ${current_password_input}    ${VALID_PASSWORD}
     Input Text    ${new_password_input}    ${NEW_PASSWORD}
     Input Text    ${repeat_new_password_input}    ${NEW_PASSWORD}
+    Capture Page Screenshot    change_pass.png
     Click Button    ${change_password_button}
     Wait Until Page Contains    Your password was successfully changed.
     Click Button    ${navbar_account}
