@@ -80,6 +80,7 @@ Assert New Card With Invalid Card Number
 
 Assert New Payment Method Selected During Checkout
     basket_keywords.Assert Item Added To Bakset
+    Capture Page Screenshot    smtg.png
     Assert Delivery Method Selected
     ${card_number_4_digits}=    Get Regexp Matches    ${CARD_NUMBER2}    \\d{4}$
     Page Should Contain    ${card_number_4_digits}[0]

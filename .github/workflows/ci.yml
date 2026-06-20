@@ -77,6 +77,7 @@ jobs:
           ZIP2: ${{ secrets.ZIP2 }}
           NAME2: ${{ secrets.NAME2 }}
           CARD_NUMBER2: ${{ secrets.CARD_NUMBER2 }}
+          INVALID_CARD_NUMBER: ${{ secrets.INVALID_CARD_NUMBER }}
           EXPIRY_MONTH2: ${{ secrets.EXPIRY_MONTH2 }}
           EXPIRY_YEAR2: ${{ secrets.EXPIRY_YEAR2 }}
           MOBILE_NUMBER2: ${{ secrets.MOBILE_NUMBER2 }}
