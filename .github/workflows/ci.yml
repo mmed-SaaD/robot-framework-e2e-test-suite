@@ -20,7 +20,7 @@ jobs:
 
     services:
       juice-shop:
-        image: bkimminich/juice-shop
+        image: bkimminich/juice-shop@sha256:a8139c141311c7f31fcf2e611125246928f703ee42827de33983fd9425d1b2f6
         ports:
           - 3000:3000
 
