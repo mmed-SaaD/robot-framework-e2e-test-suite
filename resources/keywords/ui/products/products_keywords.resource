@@ -111,7 +111,7 @@ Assert Products Cards Open Details
 
 Assert Products Search By Valid Name Is Functional
     Capture Page Screenshot    search_attempt.png
-    Wait Until Keyword Succeeds    30s    1s    Click Button   ${search_icon}
+    Wait Until Keyword Succeeds    30s    1s    Click Element   ${search_icon}
     Wait Until Element Is Visible    ${search_input}
     Input Text    ${search_input}    text=${searched_product_name}
     Press Keys    ${search_input}    ENTER
