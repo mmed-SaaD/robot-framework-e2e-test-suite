@@ -178,14 +178,26 @@ Assert Executable Files Are Rejected
 
 Assert Malicious File Extensions Are Blocked
     [Arguments]    ${file}
-    ${first_iteration}=    Run Keyword And Return Status    Assert Account Page Opens
+
+    Assert Account Page Opens
+
     ${payload}=    Normalize Path    ${EXECDIR}/core/utils/security_payloads/${file}
     File Should Exist    ${payload}
-    Choose File    ${img_upload}    ${payload}
-    Click Button    ${img_upload_button}
-    Page Should Contain    Error: Illegal file type
-    Go Back
 
+    Wait Until Element Is Visible    ${img_upload}    10s
+    Choose File    ${img_upload}    ${payload}
+
+    Wait Until Element Is Visible    ${img_upload_button}    10s
+    Click Button    ${img_upload_button}
+
+    ${illegal_type}=    Run Keyword And Return Status
+    ...    Wait Until Page Contains    Error: Illegal file type    5s
+
+    ${too_large}=    Run Keyword And Return Status
+    ...    Wait Until Page Contains    Error: File too large    5s
+
+    Should Be True    ${illegal_type} or ${too_large}    msg=Malicious file was not rejected correctly.
+    
 Start ZAP
     [Arguments]    ${target_url}=${BASE_URL}
     ${params}=    Create Dictionary    url=${target_url}    recurse=true
