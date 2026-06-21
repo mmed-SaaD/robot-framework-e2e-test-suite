@@ -5,6 +5,9 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+  schedule:
+    - cron: '0 7 * * *'
+
 permissions:
   contents: read
   pages: write
@@ -44,7 +47,7 @@ jobs:
         run: |
           docker run -d \
             --name zap \
-            -p 8090:8090 \
+            --network host \
             zaproxy/zap-stable \
             zap.sh -daemon \
             -host 0.0.0.0 \
