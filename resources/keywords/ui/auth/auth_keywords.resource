@@ -16,7 +16,7 @@ Handle Welcome Banner
 Valid Log In
     [Arguments]    ${email}=${VALID_EMAIL}    ${password}=${VALID_PASSWORD}
     Login Page Opens
-    Close Welcome Banner
+    global_keywords.Close Welcome Banner
     Wait Until Initial Snackbar Disappears
     Close Cookies Message
     Input Text    ${email_input}    text=${email}
