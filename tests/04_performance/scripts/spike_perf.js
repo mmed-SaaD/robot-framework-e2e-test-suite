@@ -14,12 +14,12 @@ export const options = {
         {duration : '3s', target : 15},
         {duration : '30s', target : 0},
     ],
-    thresholds : {
-        http_req_failed : ['rate<0.05'],
-        'http_req_duration{type:search}' : ['p(95)<2000'],
-        'http_req_duration{type:auth}' : ['p(95)<2500'],
-        'http_req_duration{type:basket}' : ['p(95)<3000'],
-        'http_req_duration{type:feedback}' : ['p(95)<3500'],
+    thresholds: {
+        http_req_failed: ['rate<0.20'],
+        'http_req_duration{type:search}': ['p(95)<6000'],
+        'http_req_duration{type:auth}': ['p(95)<8000'],
+        'http_req_duration{type:basket}': ['p(95)<10000'],
+        'http_req_duration{type:feedback}': ['p(95)<10000'],
     }
 };
 

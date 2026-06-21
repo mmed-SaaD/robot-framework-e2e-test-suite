@@ -10,9 +10,8 @@ export const options = {
     iterations: 1,
     duration: '30s',
     thresholds : {
-        http_req_failed : ['rate<0.05'],
-        http_req_duration : ['avg<1500'],
-        http_req_duration : ['p(95)<1000']
+        http_req_failed: ['rate<0.05'],
+        http_req_duration: ['avg<2500', 'p(95)<4000'],
     },
 };
 

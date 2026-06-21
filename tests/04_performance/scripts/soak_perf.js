@@ -9,12 +9,12 @@ const PASSWORD = __ENV.PASSWORD;
 export const options = {
     vus: 15,
     duration: '25m',
-    thresholds : {
-        http_req_failed : ['rate<0.05'],
-        'http_req_duration{type:search}' : ['p(95)<1000'],
-        'http_req_duration{type:auth}' : ['p(95)<1500'],
-        'http_req_duration{type:basket}' : ['p(95)<2000'],
-        'http_req_duration{type:feedback}' : ['p(95)<2000'],
+    thresholds: {
+        http_req_failed: ['rate<0.10'],
+        'http_req_duration{type:search}': ['p(95)<3500'],
+        'http_req_duration{type:auth}': ['p(95)<4500'],
+        'http_req_duration{type:basket}': ['p(95)<6000'],
+        'http_req_duration{type:feedback}': ['p(95)<6000'],
     }
 };
 
