@@ -139,7 +139,7 @@ jobs:
             tests/04_performance/ \
           
           robot \
-            tests/04_performance/ \
+            tests/05_security/ \
 
       - name: Upload Screenshots
         if: always()
