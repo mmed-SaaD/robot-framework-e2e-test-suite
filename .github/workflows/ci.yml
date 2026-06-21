@@ -137,6 +137,9 @@ jobs:
             --outputdir results \
             --test "Registration With Valid Data" tests/01_ui/01_registration_tests.robot \
             tests/04_performance/ \
+          
+          robot \
+            tests/04_performance/ \
 
       - name: Upload Screenshots
         if: always()
