@@ -197,7 +197,7 @@ Assert Malicious File Extensions Are Blocked
     ...    Wait Until Page Contains    Error: File too large    5s
 
     Should Be True    ${illegal_type} or ${too_large}    msg=Malicious file was not rejected correctly.
-    
+
 Start ZAP
     [Arguments]    ${target_url}=${BASE_URL}
     ${params}=    Create Dictionary    url=${target_url}    recurse=true
@@ -239,14 +239,28 @@ Wait Until ZAP Passive Scan Is Completed
     
 Assert Target Exists In ZAP Site Tree
     ${response}=    GET On Session    owasp zap    /JSON/core/view/sites/    expected_status=200
-    Log    ${response.text}
     ${sites}=    Set Variable    ${response.json()}[sites]
-    Should Contain    ${sites}    ${BASE_URL}
+    Log    ZAP sites: ${sites}
+
+    ${target_exists}=    Run Keyword And Return Status
+    ...    Should Contain Match    ${sites}    ${BASE_URL}*
+
+    IF    not ${target_exists}
+        Log    Target not found in ZAP site tree. Running spider first...    WARN
+        ${scan_id}=    Start ZAP
+        Wait Until ZAP Scan Is Completed    ${scan_id}
+
+        ${response}=    GET On Session    owasp zap    /JSON/core/view/sites/    expected_status=200
+        ${sites}=    Set Variable    ${response.json()}[sites]
+        Log    ZAP sites after spider: ${sites}
+
+        Should Contain Match    ${sites}    ${BASE_URL}*
+    END
 
 Start ZAP Active Scan
     [Arguments]    ${target_url}=${BASE_URL}
     Assert Target Exists In ZAP Site Tree
-    ${params}=    Create Dictionary    url=${target_url}    recurse=false
+    ${params}=    Create Dictionary    url=${target_url}    recurse=true
     ${response}=    GET On Session    owasp zap    /JSON/ascan/action/scan/    params=${params}    expected_status=200
 
     ${scan_id}=    Set Variable    ${response.json()}[scan]
