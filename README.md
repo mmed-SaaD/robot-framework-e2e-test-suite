@@ -1,223 +1,489 @@
-## UI Automation Testing - Robot Framework
+# 🚀 Robot Framework E2E Test Suite
 
-The first phase of this project focuses on UI automation testing for OWASP Juice Shop using Robot Framework and SeleniumLibrary.
+A comprehensive QA Automation Framework built with **Robot Framework** to validate the OWASP Juice Shop application through multiple testing layers including UI, API, Database, Performance, and Security testing.
 
-The goal of this layer is to validate the main user-facing workflows of the application, including authentication, product browsing, basket management, checkout, address handling, payment flow, account features, feedback submission, navigation, and negative UI scenarios.
+---
 
-### UI Test Execution Summary
+# 📌 Project Overview
 
-| Metric | Result |
-|---|---:|
-| Total UI Tests | 77 |
-| Passed | 76 |
-| Failed | 1 |
-| Pass Rate | 98.7% |
-| Framework | Robot Framework |
-| UI Library | SeleniumLibrary |
+This project demonstrates modern Quality Assurance practices by combining:
+
+* UI Automation Testing
+* API Testing
+* Database Validation
+* Performance Testing
+* Security Testing
+* CI/CD Automation
+* Automated Reporting
+
+The framework is designed to showcase real-world QA engineering workflows using industry-standard tools.
+
+---
+
+# 📊 Test Execution Summary
+
+| Metric                 |           Result |
+| ---------------------- | ---------------: |
+| Total Tests            |              202 |
+| Passed                 |              167 |
+| Failed                 |               35 |
+| Pass Rate              |           82.67% |
+| Execution Time         |           1h 21m |
+| Framework              |  Robot Framework |
 | Application Under Test | OWASP Juice Shop |
 
-### Covered UI Modules
+---
 
-The UI automation suite currently covers the following modules:
+# 🛠 Technology Stack
 
-| Module | Coverage |
-|---|---|
-| Smoke Tests | Application launch, home page load, product visibility, navigation, basket icon, login page |
-| Authentication | Valid login, invalid login, empty fields, malformed email, logout, session persistence |
-| Registration | Valid registration, missing fields, invalid email, weak password, existing email, password mismatch |
-| Product Catalogue | Product cards, names, images, prices, details page, search, pagination, items per page |
-| Basket / Cart | Add product, multiple products, counter update, quantity changes, remove items, total price, empty basket behavior |
-| Checkout / Order Flow | Checkout start, address selection, delivery method, payment selection, order review, order placement, confirmation |
-| Address Management | Add, edit, delete, validate required fields, verify address during checkout |
-| Payment Flow | Add payment method, validate card fields, invalid card number, select and delete payment method |
-| User Account / Profile | Open account page, view profile, change password, invalid password change |
-| Contact / Feedback | Open feedback page, submit valid/invalid feedback, rating component, success message |
-| Navigation | Menu, main links, logo redirect, basket link, account link, browser back, page refresh |
-| Negative UI Tests | Invalid route, protected page access while logged out, empty required forms |
-
-### Key Testing Practices Applied
-
-- Modular Robot Framework structure
-- Reusable keywords
-- Page-specific locators
-- Test tagging by feature and priority
-- Positive and negative test coverage
-- End-to-end user workflow validation
-- Dynamic UI handling for Angular Material components
-- Explicit waits for stable UI execution
-- Validation of business-critical flows such as login, basket, checkout, and order placement
-
-### Current Status
-
-The UI automation layer is functionally complete for the first phase of the framework.
-
-Out of 77 implemented UI tests, 76 are passing successfully. The remaining failing test is kept visible for analysis and improvement, which reflects a realistic QA workflow rather than hiding unstable or application-specific behavior.
-
-This UI layer is now ready to be extended with the second phase of the framework: API testing.
-
-
-## API Automation Testing - Robot Framework
-
-The second phase of this project focuses on API automation testing for OWASP Juice Shop using Robot Framework and RequestsLibrary.
-
-The goal of this layer is to validate the application's REST API endpoints, business workflows, authentication mechanisms, input validation, error handling, data integrity, and documented security vulnerabilities.
-
-### API Test Execution Summary
-
-| Metric                             |           Result |
-| ---------------------------------- | ---------------: |
-| Total API Tests                    |               86 |
-| Functional Tests Passed            |               66 |
-| Security Vulnerabilities Validated |               20 |
-| Total Coverage                     |               86 |
-| Framework                          |  Robot Framework |
-| API Library                        |  RequestsLibrary |
-| Application Under Test             | OWASP Juice Shop |
-
-### Covered API Modules
-
-The API automation suite currently covers the following modules:
-
-| Module                   | Coverage                                                                                                             |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| Authentication           | Valid login, invalid login, empty credentials, malformed credentials, token generation, authorization validation     |
-| Registration             | Valid registration, duplicate account detection, missing required fields, invalid email formats, password validation |
-| Products                 | Product retrieval, product details, catalogue validation, search functionality, response schema validation           |
-| Basket Management        | Create basket, add product, update quantity, remove product, basket persistence, basket retrieval                    |
-| Checkout Flow            | Basket validation, address selection, delivery method selection, payment method selection, order placement           |
-| Address Management       | Create address, retrieve addresses, validate mandatory fields, verify address persistence                            |
-| Payment Methods          | Add payment method, validate card information, retrieve payment methods, delete payment method                       |
-| Feedback                 | Submit feedback, captcha validation, invalid feedback scenarios, response validation                                 |
-| API Contract Validation  | Response structure verification, required fields validation, status code validation                                  |
-| Negative Testing         | Invalid endpoints, unsupported HTTP methods, malformed requests, missing authorization headers                       |
-| End-to-End API Workflows | Registration → Login → Basket → Checkout complete business flow                                                      |
-
-### Security Testing Coverage
-
-The API suite also validates multiple OWASP-related security scenarios:
-
-| Category                   | Coverage                                                                  |
-| -------------------------- | ------------------------------------------------------------------------- |
-| SQL Injection              | Login endpoint testing, search endpoint testing, vulnerability validation |
-| Cross-Site Scripting (XSS) | Feedback and input field payload validation                               |
-| Broken Access Control      | Unauthorized resource access attempts                                     |
-| Sensitive Data Exposure    | Verification of exposed data in API responses                             |
-| Input Validation           | Invalid payloads, malformed requests, boundary conditions                 |
-| Error Handling             | Internal error exposure checks and stack trace detection                  |
-
-### Key Testing Practices Applied
-
-* Modular Robot Framework architecture
-* Reusable API keywords
-* Session and authentication management
-* Dynamic test data generation
-* Positive and negative API coverage
-* Contract and schema validation
-* Security-focused test scenarios
-* End-to-end business workflow validation
-* Response content verification
-* Status code and error handling validation
-
-### Security Validation Notes
-
-OWASP Juice Shop is intentionally vulnerable by design. Security-related tests are therefore used to validate and document known vulnerabilities rather than expecting secure behavior.
-
-The framework distinguishes between:
-
-* Functional API validation
-* Negative API validation
-* Security vulnerability validation
-
-This approach allows the test suite to verify both expected business functionality and intentionally vulnerable application behavior.
-
-### Current Status
-
-The API automation layer is functionally complete and provides broad coverage across the application's core business workflows and security scenarios.
-
-The suite includes 86 implemented API tests covering authentication, registration, products, basket operations, checkout, feedback, contract validation, negative testing, and security validation.
-
-With both the UI and API layers implemented, the framework is ready to be extended with additional quality engineering capabilities such as database validation, performance testing, security scanning, reporting enhancements, and CI/CD integration.
-
-## Grafana Dashboards
-
-The following Grafana dashboards were used to visualize performance metrics collected during test execution. Metrics were exported from k6 to InfluxDB and analyzed in real time.
-
-### Smoke Testing Dashboard
-
-![Smoke Testing Dashboard](figures/smoke.png)
+| Category            | Tool            |
+| ------------------- | --------------- |
+| Test Framework      | Robot Framework |
+| UI Testing          | SeleniumLibrary |
+| API Testing         | RequestsLibrary |
+| Database Testing    | DatabaseLibrary |
+| Performance Testing | k6              |
+| Security Testing    | OWASP ZAP       |
+| Reporting           | Allure Report   |
+| Database            | SQLite          |
+| Containers          | Docker          |
+| CI/CD               | GitHub Actions  |
+| Metrics Storage     | InfluxDB        |
+| Monitoring          | Grafana         |
 
 ---
 
-### Load Testing Dashboard
+# 🖥 UI Automation Phase
 
-![Load Testing Dashboard](figures/load.png)
+## Summary
+
+| Metric      | Result |
+| ----------- | -----: |
+| Total Tests |     82 |
+| Passed      |     79 |
+| Failed      |      3 |
+
+### Covered Areas
+
+* User Registration
+* Login & Logout
+* Product Catalog
+* Product Search
+* Basket Management
+* Checkout Process
+* Address Management
+* Payment Management
+* Order Confirmation
+* Feedback Submission
+* Navigation Validation
+
+### Highlights
+
+* Reusable Keywords
+* Explicit Wait Strategies
+* End-to-End Workflows
+* Positive & Negative Testing
+* Dynamic UI Validation
 
 ---
 
-### Stress Testing Dashboard
+# 🔌 API Automation Phase
 
-![Stress Testing Dashboard](figures/stress.png)
+## Summary
+
+| Metric      | Result |
+| ----------- | -----: |
+| Total Tests |     86 |
+| Passed      |     59 |
+| Failed      |     27 |
+
+### Covered Areas
+
+* Authentication APIs
+* Registration APIs
+* Basket APIs
+* Checkout APIs
+* Product APIs
+* Feedback APIs
+* Negative API Testing
+* Contract Validation
+
+### Highlights
+
+* Status Code Validation
+* Response Schema Validation
+* Negative Testing
+* Data Integrity Verification
+* Security-Oriented API Checks
 
 ---
 
-### Spike Testing Dashboard
+# 🗄 Database Automation Phase
 
-![Spike Testing Dashboard](figures/spike.png)
+## Summary
+
+| Metric      | Result |
+| ----------- | -----: |
+| Total Tests |     14 |
+| Passed      |     14 |
+| Failed      |      0 |
+| Pass Rate   |   100% |
+
+### Covered Areas
+
+* User Data Validation
+* Product Data Validation
+* Basket Data Validation
+* Feedback Validation
+* Query Performance Verification
+* Database Security Validation
+
+### Highlights
+
+* Direct SQL Assertions
+* Data Integrity Checks
+* Parameterized Queries
+* Database Performance Verification
 
 ---
 
-### Soak Testing Dashboard
+# ⚡ Performance Testing Phase
 
-![Soak Testing Dashboard](figures/soak.png)
+Performance testing is implemented using **k6** and integrated directly into Robot Framework.
+
+Performance metrics are exported to **InfluxDB** and visualized using **Grafana** dashboards.
+
+## Test Scenarios
+
+### Smoke Testing
+
+* Application availability validation
+* Core endpoint verification
+* Baseline performance metrics
+
+### Load Testing
+
+* Normal traffic simulation
+* Concurrent user validation
+* Throughput analysis
+
+### Stress Testing
+
+* High load simulation
+* Breaking point identification
+
+### Spike Testing
+
+* Sudden traffic surge simulation
+* Recovery validation
+
+### Soak Testing
+
+* Long-duration stability testing
+* Resource consumption analysis
 
 ---
 
-Status: UI complete | API complete | Performance Complete | DB in progress
+# 📈 Grafana Dashboards
 
+## Smoke Test Dashboard
 
-# Database Automation Testing - Robot Framework
+> Add screenshot here
 
-The third phase of this project focuses on direct database validation for OWASP Juice Shop using Robot Framework and DatabaseLibrary.
+![Smoke Dashboard](figures/smoke.png)
 
-The goal of this layer is to verify data persistence, integrity, security, and database query performance by validating the data stored in the SQLite database after UI and API operations.
+---
 
-### Database Test Execution Summary
+## Load Test Dashboard
 
-| Metric         |          Result |
-| -------------- | --------------: |
-| Total DB Tests |              11 |
-| Passed         |              11 |
-| Failed         |               0 |
-| Pass Rate      |            100% |
-| Framework      | Robot Framework |
-| DB Library     | DatabaseLibrary |
-| Database       |          SQLite |
+> Add screenshot here
 
-### Covered Database Modules
+![Load Dashboard](figures/load.png)
 
-| Module                   | Coverage                                                                                 |
-| ------------------------ | ---------------------------------------------------------------------------------------- |
-| User Data Validation     | User creation, duplicate email prevention, password hashing verification                 |
-| Product Validation       | Product data consistency and update persistence                                          |
-| Basket Data Validation   | Product addition, quantity update, and product removal validation                        |
-| Feedback Data Validation | Feedback creation, update, and deletion persistence                                      |
-| Query Performance        | Product queries, user lookup performance, join query execution, repeated query stability |
-| Database Security        | Verification that sensitive user passwords are not stored in plaintext                   |
+---
 
-### Key Testing Practices Applied
+## Stress Test Dashboard
 
-* Direct database validation after UI and API workflows
-* Insert, update, and delete operation verification
-* Data integrity and relationship consistency checks
-* Dynamic test data generation and cleanup
-* Database query performance measurement
-* Security validation of sensitive stored data
-* Parameterized SQL queries to prevent hardcoded test data
+> Add screenshot here
 
-### Current Status
+![Stress Dashboard](figures/stress.png)
 
-The database automation layer is complete and provides coverage for the most critical database operations and integrity checks.
+---
 
-The suite validates user data, product records, basket operations, feedback persistence, query performance, and security-related database checks.
+## Spike Test Dashboard
 
-With UI, API, and Database testing implemented, the framework now provides a complete multi-layer quality validation approach and is ready to be extended with performance testing, security scanning, advanced reporting, and CI/CD integration.
+> Add screenshot here
+
+![Spike Dashboard](figures/spike.png)
+
+---
+
+## Soak Test Dashboard
+
+> Add screenshot here
+
+![Soak Dashboard](figures/soak.png)
+
+---
+
+# 🔒 Security Testing Phase
+
+Security testing is implemented using:
+
+* OWASP ZAP
+* Robot Framework
+* RequestsLibrary
+
+The objective is to validate and document known vulnerabilities within OWASP Juice Shop.
+
+## Summary
+
+| Metric      | Result |
+| ----------- | -----: |
+| Total Tests |     15 |
+| Passed      |     10 |
+| Failed      |      5 |
+
+### Security Areas Covered
+
+#### SQL Injection
+
+* Authentication bypass testing
+* Input manipulation validation
+
+#### Cross-Site Scripting (XSS)
+
+* Reflected XSS
+* Stored XSS
+* Payload execution testing
+
+#### Broken Access Control
+
+* Unauthorized endpoint access
+* Resource enumeration
+
+#### Path Traversal
+
+* Directory traversal attempts
+* Sensitive file access validation
+
+#### Malicious File Upload
+
+* Executable upload attempts
+* Server-side validation testing
+
+#### Security Scanning
+
+* OWASP ZAP Spidering
+* Passive Analysis
+* Active Vulnerability Scanning
+
+### Note
+
+OWASP Juice Shop is intentionally vulnerable. Security tests are designed to discover and document vulnerabilities while demonstrating security testing methodologies.
+
+---
+
+# 📋 Allure Reporting
+
+The framework automatically generates professional Allure Reports after each execution.
+
+## Features
+
+* Test Overview Dashboard
+* Test Categories
+* Test Suites Breakdown
+* Timeline Visualization
+* Severity Distribution
+* Duration Analysis
+* Failure Investigation
+* Historical Trends
+
+---
+
+## Allure Overview
+
+> Insert screenshot: overview.png
+
+![Allure Overview](figures/overview.png)
+
+### Remarks
+
+* 202 total test cases executed
+* 167 passed
+* 35 failed
+* 82.67% pass rate
+* 1h 21m execution duration
+
+---
+
+## Allure Graphs
+
+> Insert screenshot: graphs.png
+
+![Allure Graphs](figures/graphs.png)
+
+### Remarks
+
+* Pass/Fail distribution
+* Severity breakdown
+* Duration analysis
+* Execution statistics
+
+---
+
+## Allure Timeline
+
+> Insert screenshot: timeline.png
+
+![Allure Timeline](figures/timeline.png)
+
+### Remarks
+
+* Visual execution flow
+* Long-running test identification
+* Bottleneck analysis
+
+---
+
+## Allure Suites
+
+> Insert screenshot: suites.png
+
+![Allure Suites](figures/suites.png)
+
+### Remarks
+
+| Suite       | Passed | Failed |
+| ----------- | -----: | -----: |
+| UI          |     79 |      3 |
+| API         |     59 |     27 |
+| Database    |     14 |      0 |
+| Performance |      5 |      0 |
+| Security    |     10 |      5 |
+
+---
+
+# 🚀 GitHub CI/CD Pipeline
+
+The project includes a fully automated GitHub Actions pipeline.
+
+## Trigger Events
+
+* Push to Main Branch
+* Pull Requests
+* Manual Workflow Dispatch
+
+## Pipeline Workflow
+
+```text
+Developer Push
+        ↓
+GitHub Actions
+        ↓
+Start Docker Services
+        ↓
+Execute UI Tests
+        ↓
+Execute API Tests
+        ↓
+Execute Database Tests
+        ↓
+Execute Performance Tests
+        ↓
+Execute Security Tests
+        ↓
+Generate Allure Report
+        ↓
+Publish Artifacts
+```
+
+## CI/CD Features
+
+### Automated Infrastructure
+
+* OWASP Juice Shop Container
+* InfluxDB Container
+
+### Automated Testing
+
+* UI Validation
+* API Validation
+* Database Validation
+* Performance Testing
+* Security Testing
+
+### Automated Reporting
+
+* Allure Results Generation
+* Allure Report Publishing
+* Artifact Storage
+
+### Benefits
+
+* Faster Feedback
+* Consistent Execution Environment
+* Automated Quality Gates
+* Repeatable Test Runs
+
+---
+
+# 📂 Project Structure
+
+```text
+robot-framework-e2e-test-suite
+│
+├── tests/
+│   ├── 01_ui/
+│   ├── 02_api/
+│   ├── 03_database/
+│   ├── 04_performance/
+│   └── 05_security/
+│
+├── resources/
+├── core/
+├── figures/
+├── juice-shop-db/
+├── allure-results/
+├── allure-report/
+├── .github/
+│   └── workflows/
+│
+└── README.md
+```
+
+---
+
+# 🎯 Current Status
+
+| Component           | Status     |
+| ------------------- | ---------- |
+| UI Testing          | ✅ Complete |
+| API Testing         | ✅ Complete |
+| Database Testing    | ✅ Complete |
+| Performance Testing | ✅ Complete |
+| Security Testing    | ✅ Complete |
+| Allure Reporting    | ✅ Complete |
+| GitHub CI/CD        | ✅ Complete |
+
+---
+
+# 🔮 Future Improvements
+
+* Jenkins Integration
+* Docker Compose Environment
+* Parallel Test Execution
+* Kubernetes Test Environment
+* Historical Trend Analysis
+* Performance Regression Detection
+* Advanced Security Scanning
+
+---
+
+# 👨‍💻 Author
+
+## Mohamed Saad BAZOURHI
+
+**Junior QA Engineer | Test Automation Engineer | Cybersecurity Graduate**
+
+⭐ If you found this project useful, consider giving it a star.
